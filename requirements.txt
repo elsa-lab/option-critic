@@ -1,0 +1,6 @@
+atari-py
+Lasagne
+matplotlib
+numpy==1.15.4
+opencv-python
+theano==0.8.0

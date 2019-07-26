@@ -1,12 +1,15 @@
-import os, sys
+import os
+import sys
 import argparse
 import numpy as np
 import theano
-from ale_python_interface import ALEInterface
+from atari_py import ALEInterface
 from train_agent import Q_Learning
 
+
 def str2bool(v):
-  return v.lower() in ("yes", "true", "t", "1")
+    return v.lower() in ("yes", "true", "t", "1")
+
 
 def process_args(args, defaults, description):
     """
@@ -95,7 +98,7 @@ def process_args(args, defaults, description):
                               '(default: %(default)s)'))
     parser.add_argument('--update-frequency', dest="update_frequency",
                         type=int, default=defaults.UPDATE_FREQUENCY,
-                        help=('Number of actions before each SGD update. '+
+                        help=('Number of actions before each SGD update. ' +
                               '(default: %(default)s)'))
     parser.add_argument('--replay-start-size', dest="replay_start_size",
                         type=int, default=defaults.REPLAY_START_SIZE,
@@ -124,16 +127,16 @@ def process_args(args, defaults, description):
                         help='Name of pkl files destination (within models/)')
     parser.add_argument('--termination-reg', dest="termination_reg",
                         type=float, default=defaults.TERMINATION_REG,
-                        help=('Regularization to decrease termination prob.'+
-                            ' (default: %(default)s)'))
+                        help=('Regularization to decrease termination prob.' +
+                              ' (default: %(default)s)'))
     parser.add_argument('--entropy-reg', dest="entropy_reg",
                         type=float, default=defaults.ENTROPY_REG,
-                        help=('Regularization to increase policy entropy.'+
-                            ' (default: %(default)s)'))
+                        help=('Regularization to increase policy entropy.' +
+                              ' (default: %(default)s)'))
     parser.add_argument('--num-options', dest="num_options",
                         type=int, default=defaults.NUM_OPTIONS,
-                        help=('Number of options to create.'+
-                            ' (default: %(default)s)'))
+                        help=('Number of options to create.' +
+                              ' (default: %(default)s)'))
     parser.add_argument('--actor-lr', dest="actor_lr",
                         type=float, default=defaults.ACTOR_LR,
                         help=('Actor network learning rate (default: %(default)s)'))
@@ -157,11 +160,13 @@ def process_args(args, defaults, description):
 
     return parameters
 
+
 def load_params(model_path):
-  import pickle as pkl
-  mydir = "/".join(model_path.split("/")[:-1])
-  model_params = pkl.load(open(os.path.join(mydir, 'model_params.pkl'), 'rb'))
-  return model_params
+    import pickle as pkl
+    mydir = "/".join(model_path.split("/")[:-1])
+    model_params = pkl.load(
+        open(os.path.join(mydir, 'model_params.pkl'), 'rb'))
+    return model_params
 
 
 def launch(args, defaults, description):
@@ -171,13 +176,13 @@ def launch(args, defaults, description):
 
     rec_screen = ""
     if "--nn-file" in args:
-      temp_params = vars(load_params(args[args.index("--nn-file")+1]))
-      for p in temp_params:
-        try:
-          vars(defaults)[p.upper()] = temp_params[p]
-        except:
-          print "warning: parameter", p, "from param file doesn't exist."
-      #rec_screen = args[args.index("--nn-file")+1][:-len("last_model.pkl")]+"/frames"
+        temp_params = vars(load_params(args[args.index("--nn-file")+1]))
+        for p in temp_params:
+            try:
+                vars(defaults)[p.upper()] = temp_params[p]
+            except:
+                print "warning: parameter", p, "from param file doesn't exist."
+        #rec_screen = args[args.index("--nn-file")+1][:-len("last_model.pkl")]+"/frames"
 
     parameters = process_args(args, defaults, description)
 
@@ -195,8 +200,10 @@ def launch(args, defaults, description):
     ale.setInt('random_seed', rng.randint(1000))
     ale.setBool('display_screen', parameters.display_screen)
     ale.setString('record_screen_dir', rec_screen)
-    trainer = Q_Learning(model_params=parameters, ale_env=ale, folder_name=folder_name)
+    trainer = Q_Learning(model_params=parameters,
+                         ale_env=ale, folder_name=folder_name)
     trainer.train()
+
 
 if __name__ == '__main__':
     pass

@@ -2,7 +2,7 @@ import sys, pdb, time, random, os, datetime, csv, theano, copy, pickle
 import cv2
 import numpy as np
 from random import randrange
-from ale_python_interface import ALEInterface
+from atari_py import ALEInterface
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -365,14 +365,14 @@ class DQN_Trainer(Trainer):
     ax = fig.add_subplot(111)
     ax.set_aspect(1)
     ax.tick_params(axis=u'both', which=u'both',length=0)
-    res = ax.imshow(np.array(norm_conf).T, cmap=plt.cm.jet, 
+    res = ax.imshow(np.array(norm_conf).T, cmap=plt.cm.jet,
                     interpolation='nearest', vmax=1, vmin=0)
 
     width, height = conf_arr.shape
 
     for x in xrange(width):
         for y in xrange(height):
-            ax.annotate(str(int(conf_arr[x][y]*100)), xy=(x, y), 
+            ax.annotate(str(int(conf_arr[x][y]*100)), xy=(x, y),
                         horizontalalignment='center',
                         verticalalignment='center', size=9)
 
