@@ -13,7 +13,7 @@ import theano.tensor as T
 import scipy, scipy.misc
 from neural_net import OptionCritic_Network
 from exp_replay import DataSet
-from plot_learning import plot
+# from plot_learning import plot
 
 sys.setrecursionlimit(50000)
 
@@ -41,8 +41,13 @@ def filecreation(model_params, folder_name=None):
 
 class Trainer(object):
   def create_results_file(self):
-    self.prog_file = os.path.join(self.mydir, 'training_progress.csv')
-    data_file = open(self.prog_file, 'wb')
+    self.training_results_file = os.path.join(self.mydir, 'training_results.csv')
+    data_file = open(self.training_results_file, 'wb')
+    data_file.write('num_frame,episode_reward\n')
+    data_file.close()
+
+    self.testing_results_file = os.path.join(self.mydir, 'testing_results.csv')
+    data_file = open(self.testing_results_file, 'wb')
     data_file.write('epoch,mean_score,mean_q_val\n')
     data_file.close()
 
@@ -51,14 +56,23 @@ class Trainer(object):
     data_file.write('epoch,termination_prob\n')
     data_file.close()
 
-  def update_results(self, epoch, ave_reward, ave_q):
+  def update_training_results(self, num_frame, episode_reward):
     # if it isn't, then we are testing and watching a game.
     # no need to update a file.
     if self.params.nn_file is None:
-      fd = open(self.prog_file,'a')
+      fd = open(self.training_results_file,'a')
+      fd.write('%d,%f\n' % (num_frame, episode_reward))
+      fd.close()
+      # plot(self.mydir)
+
+  def update_testing_results(self, epoch, ave_reward, ave_q):
+    # if it isn't, then we are testing and watching a game.
+    # no need to update a file.
+    if self.params.nn_file is None:
+      fd = open(self.testing_results_file,'a')
       fd.write('%d,%f,%f\n' % (epoch, ave_reward, ave_q))
       fd.close()
-      plot(self.mydir)
+      # plot(self.mydir)
 
   def update_term_probs(self, epoch, term_probs):
     if self.params.nn_file is None:
@@ -211,7 +225,7 @@ class Trainer(object):
       mean_q = self.get_mean_q_val() if self.params.nn_file is None else 1
     else:
       mean_q = 1
-    self.update_results(epoch+1, mean_reward, mean_q)
+    self.update_testing_results(epoch+1, mean_reward, mean_q)
 
   def train(self):
     cumulative_reward = 0
@@ -234,6 +248,8 @@ class Trainer(object):
         print "ETA: %d:%02d" % (max(0, frames_rem/60/fps*4), ((frames_rem/fps*4)%60) if frames_rem > 0 else 0),
         print "term ratio %.2f" % (100*self.term_ratio)
         counter += 1
+
+        self.update_training_results(self.frame_count, total_reward)
 
       if self.params.nn_file is None:
         self.save_model(total_reward)
