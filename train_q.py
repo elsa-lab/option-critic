@@ -53,11 +53,11 @@ class Defaults:
     MEAN_FRAME = False
     TEMP = 1
 
-    TERMINATION_REG = 0.0
+    TERMINATION_REG = 0.01
     NUM_OPTIONS = 8
     ACTOR_LR = 0.00025
-    ENTROPY_REG = 0.0
-    BASELINE = False
+    ENTROPY_REG = 0.01
+    BASELINE = True
 
 
 if __name__ == "__main__":
