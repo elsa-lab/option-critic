@@ -1,38 +1,56 @@
 # The Option-Critic Architecture
 
-Code for the Option-Critic Architecture https://arxiv.org/pdf/1609.05140v2.pdf.
+Code for the [Option-Critic](https://arxiv.org/pdf/1609.05140v2.pdf) Architecture.
 
 ## Installation
 
-Here's a list of all dependencies:
+1. Install Anaconda (See `conda.sh`)
+2. Install the repo (See `install.sh`)
 
-- Numpy
-- Theano
-- Lasagne
-- Launcher
-- Argparse
-- Arcade Learning Environment
-- matplotlib
-- cv2 (OpenCV)
+## CUDA Info
+
+The following is the CUDA info on a working machine:
+
+The command ([Reference](https://nvidia.custhelp.com/app/answers/detail/a_id/3751/~/useful-nvidia-smi-queries))
+
+```bash
+nvidia-smi --query-gpu=gpu_name,gpu_bus_id,vbios_version --format=csv
+```
+
+gives:
+
+```bash
+name, pci.bus_id, vbios_version
+GeForce GTX 1080 Ti, 00000000:65:00.0, 86.02.39.40.62
+```
+
+## Environment Variables Info
+
+The command
+
+```bash
+env | grep cuda
+```
+
+gives:
+
+```bash
+LIBRARY_PATH=/usr/local/lib:/home/shawn/.cuda/lib64:/home/shawn/.cuda/extras/CUPTI/lib64:
+GPUARRAY_TEST_DEVICE=cuda0
+CUDA_HOME=/home/shawn/.cuda
+LD_LIBRARY_PATH=/usr/local/lib:/home/shawn/.cuda/lib64:/home/shawn/.cuda/extras/CUPTI/lib64:
+CPATH=/home/shawn/.cuda/include:
+PATH=/home/shawn/anaconda3/envs/option_critic/bin:/home/shawn/anaconda3/condabin:/home/shawn/py27/bin:/home/shawn/bin:/home/shawn/.local/bin:/home/shawn/.cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+```
 
 ## Training
 
-To train, run following command:
-```
-python train_q.py --rom pong --num-options 8 --folder-name pong_tempmodel
-```
-
-To view a list of available parameters, run:
-```
-print train_q.py --help
-```
-
-To speed up training, we highly suggest using cudnn(CUDA).
+See `train.sh`.
 
 ## Testing
 
 To watch model after training, run:
-```
-python run_best_model.py models/pong_tempmodel/last_model.pkl
-```
 
+```bash
+python run_best_model.py models/env_id-XXX/seed-XXX/last_model.pkl
+```
