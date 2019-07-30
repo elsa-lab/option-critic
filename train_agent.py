@@ -84,7 +84,7 @@ class Trainer(object):
 
   def test_dnn(self):
     #chooses which convnet to use based on cudnn availability
-    self.params.USE_DNN_TYPE = False
+    self.params.USE_DNN_TYPE = True
     if theano.config.device.startswith("gpu"):
       self.params.USE_DNN_TYPE=theano.sandbox.cuda.dnn.dnn_available()
     if self.params.USE_DNN_TYPE:
