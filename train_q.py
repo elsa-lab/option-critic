@@ -59,6 +59,8 @@ class Defaults:
     ENTROPY_REG = 0.01
     BASELINE = True
 
+    SEED = 1000
+
 
 if __name__ == "__main__":
     launcher.launch(sys.argv[1:], Defaults, __doc__)

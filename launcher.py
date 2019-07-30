@@ -152,6 +152,11 @@ def process_args(args, defaults, description):
     parser.add_argument('--baseline', dest='baseline',
                         type=str2bool, default=defaults.BASELINE,
                         help='use baseline in actor gradient function. (default: %(default)s)')
+
+    parser.add_argument('--seed', dest='seed',
+                        type=int, default=defaults.SEED,
+                        help='Random seed. (default: %(default)s)')
+
     parameters = parser.parse_args(args)
     print parameters
     if parameters.experiment_prefix is None:
@@ -192,12 +197,12 @@ def launch(args, defaults, description):
         rom = "%s.bin" % parameters.rom
     parameters.rom_path = os.path.join(defaults.BASE_ROM_PATH, rom)
 
-    rng = np.random.RandomState(123456)
+    rng = np.random.RandomState(parameters.seed)
 
     folder_name = None if parameters.folder_name == "" else parameters.folder_name
 
     ale = ALEInterface()
-    ale.setInt('random_seed', rng.randint(1000))
+    ale.setInt('random_seed', rng.randint(parameters.seed))
     ale.setBool('display_screen', parameters.display_screen)
     ale.setString('record_screen_dir', rec_screen)
     trainer = Q_Learning(model_params=parameters,

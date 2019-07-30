@@ -112,7 +112,7 @@ class Trainer(object):
 
     self.test_dnn()
 
-    self.rng = np.random.RandomState(1234)
+    self.rng = np.random.RandomState(model_params.seed)
     self.noop_action = 0
 
     self.frame_count = 0.
