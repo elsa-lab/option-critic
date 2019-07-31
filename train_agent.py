@@ -312,7 +312,7 @@ class DQN_Trainer(Trainer):
       epsilon = self.get_epsilon() if not testing else self.params.optimal_eps
       if termination:
         if self.print_option_stats:
-          self.update_stats(self.frame_count, since_last_term, current_option)
+          self.update_stats(self.frame_count, current_option, since_last_term)
           # print "terminated -------", since_last_term,
         termination_counter += 1
         since_last_term = 1
