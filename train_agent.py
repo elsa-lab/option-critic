@@ -39,6 +39,14 @@ def filecreation(model_params, folder_name=None):
   pkl.dump(model_params, open(os.path.join(mydir, 'model_params.pkl'), "wb"))
   return mydir
 
+def filecreation_for_testing(folder_name=None):
+  tempdir = os.path.join(os.getcwd(), "models")
+  folder_name = folder_name if folder_name is not None else datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+  mydir = os.path.join(tempdir, folder_name)
+  create_dir(mydir)
+  return mydir
+
+
 class Trainer(object):
   def create_results_file(self):
     self.training_results_file = os.path.join(self.mydir, 'training_results.csv')
@@ -54,6 +62,12 @@ class Trainer(object):
     self.term_prob_file = os.path.join(self.mydir, 'term_prob.csv')
     data_file = open(self.term_prob_file, 'wb')
     data_file.write('epoch,termination_prob\n')
+    data_file.close()
+
+  def create_stats_files(self):
+    self.stats_file = os.path.join(self.mydir, 'stats.csv')
+    data_file = open(self.stats_file, 'wb')
+    data_file.write('num_frame,current_option,since_last_term\n')
     data_file.close()
 
   def update_training_results(self, num_frame, episode_reward):
@@ -82,6 +96,11 @@ class Trainer(object):
         fd.write('%d,%f\n' % (epoch, term_prob))
       fd.close()
 
+  def update_stats(self, num_frame, current_option, since_last_term):
+    fd = open(self.stats_file, 'a')
+    fd.write('%d,%d,%d\n' % (num_frame, current_option, since_last_term))
+    fd.close()
+
   def test_dnn(self):
     #chooses which convnet to use based on cudnn availability
     self.params.USE_DNN_TYPE = True
@@ -99,6 +118,9 @@ class Trainer(object):
     if model_params.nn_file is None:
       self.mydir = filecreation(model_params, folder_name)
       self.create_results_file()
+    else:
+      self.mydir = filecreation_for_testing(folder_name=folder_name)
+      self.create_stats_files()
 
     self.params = model_params
 
@@ -290,19 +312,20 @@ class DQN_Trainer(Trainer):
       epsilon = self.get_epsilon() if not testing else self.params.optimal_eps
       if termination:
         if self.print_option_stats:
-          print "terminated -------", since_last_term,
+          self.update_stats(self.frame_count, since_last_term, current_option)
+          # print "terminated -------", since_last_term,
         termination_counter += 1
         since_last_term = 1
         current_option = np.random.randint(self.params.num_options) if np.random.rand() < epsilon else new_option
         #current_option = self.get_option(epsilon, s)
       else:
-        if self.print_option_stats:
-          print "keep going",
+        # if self.print_option_stats:
+        #   print "keep going",
         since_last_term += 1
       current_action = self.model.get_action(s, [current_option])[0]
       #print current_option, current_action
       if self.print_option_stats:
-        print current_option,# current_action
+        # print current_option,# current_action
         #print [round(i, 2) for i in self.model.get_action_dist(s, [current_option])[0]]
         if True:
           self.action_counter[current_option][self.legal_actions[current_action]] += 1
@@ -312,15 +335,15 @@ class DQN_Trainer(Trainer):
             s3 = sum([aa[a] for a in aa])
             if s3 < 1:
               continue
-            print ii, aa, s3
-            option_count.append(s3)
-            print [str(float(aa[a])/s3)[:5] for a in aa]
-            data_table.append([float(aa[a])/s3 for a in aa])
-            print
+            # print ii, aa, s3
+            # option_count.append(s3)
+            # print [str(float(aa[a])/s3)[:5] for a in aa]
+            # data_table.append([float(aa[a])/s3 for a in aa])
+            # print
 
           #ttt = self.model.get_action_dist(s3, [current_option])
           #print ttt, np.sum(-ttt*np.log(ttt))
-          print
+          # print
 
       reward, raw_reward, new_frame = self.act(current_action, testing=testing)
 
@@ -357,9 +380,9 @@ class DQN_Trainer(Trainer):
     self.term_ratio = float(termination_counter)/float(episode_counter)
     if not testing:
       self.term_probs.append(self.term_ratio)
-    if self.print_option_stats:
-      print "---->", self.term_ratio
-      #self.print_table(data_table, option_count)
+    # if self.print_option_stats:
+    #   print "---->", self.term_ratio
+    #   #self.print_table(data_table, option_count)
     fps = round((self.frame_count - start_frame_count)/(time.time()-start_time), 2)
     fps = self.ale.getEpisodeFrameNumber()/(time.time()-start_time)
     return total_reward, fps

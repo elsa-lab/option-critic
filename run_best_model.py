@@ -7,6 +7,7 @@ def test():
     command = ['python',
                'train_q.py',
                '--steps-per-epoch', '0',
+               '--epochs', '1',
                '--test-length', '100000',
                '--nn-file', sys.argv[1],
                '--max-history', '10',
