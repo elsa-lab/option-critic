@@ -15,5 +15,4 @@ python setup.py develop
 cd -
 
 # Change CUDA
-rm ~/.cuda
-ln -s /usr/local/cuda-8.0/ ~/.cuda
+ln -sfn /usr/local/cuda-8.0 ~/.cuda

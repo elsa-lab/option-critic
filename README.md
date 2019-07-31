@@ -24,6 +24,10 @@ name, pci.bus_id, vbios_version
 GeForce GTX 1080 Ti, 00000000:65:00.0, 86.02.39.40.62
 ```
 
+## cuDNN Info
+
+v5.1.10
+
 ## Environment Variables Info
 
 The command
@@ -35,12 +39,12 @@ env | grep cuda
 gives:
 
 ```bash
-LIBRARY_PATH=/usr/local/lib:/home/shawn/.cuda/lib64:/home/shawn/.cuda/extras/CUPTI/lib64:
+LIBRARY_PATH=/usr/local/lib:/home/$USER/.cuda/lib64:/home/$USER/.cuda/extras/CUPTI/lib64:
 GPUARRAY_TEST_DEVICE=cuda0
-CUDA_HOME=/home/shawn/.cuda
-LD_LIBRARY_PATH=/usr/local/lib:/home/shawn/.cuda/lib64:/home/shawn/.cuda/extras/CUPTI/lib64:
-CPATH=/home/shawn/.cuda/include:
-PATH=/home/shawn/anaconda3/envs/option_critic/bin:/home/shawn/anaconda3/condabin:/home/shawn/py27/bin:/home/shawn/bin:/home/shawn/.local/bin:/home/shawn/.cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+CUDA_HOME=/home/$USER/.cuda
+LD_LIBRARY_PATH=/usr/local/lib:/home/$USER/.cuda/lib64:/home/$USER/.cuda/extras/CUPTI/lib64:
+CPATH=/home/$USER/.cuda/include:
+PATH=/home/$USER/anaconda3/envs/option_critic/bin:/home/$USER/anaconda3/condabin:/home/$USER/py27/bin:/home/$USER/bin:/home/$USER/.local/bin:/home/$USER/.cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 ```
 
 ## Training
