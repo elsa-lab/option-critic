@@ -67,7 +67,7 @@ class Trainer(object):
   def create_stats_files(self):
     self.stats_file = os.path.join(self.mydir, 'stats.csv')
     data_file = open(self.stats_file, 'wb')
-    data_file.write('num_frame,current_option,since_last_term\n')
+    data_file.write('num_frame,current_option,current_action,since_last_term\n')
     data_file.close()
 
   def update_training_results(self, num_frame, episode_reward):
@@ -96,9 +96,12 @@ class Trainer(object):
         fd.write('%d,%f\n' % (epoch, term_prob))
       fd.close()
 
-  def update_stats(self, num_frame, current_option, since_last_term):
+  def update_stats(self, num_frame, current_option, current_action, since_last_term):
     fd = open(self.stats_file, 'a')
-    fd.write('%d,%d,%d\n' % (num_frame, current_option, since_last_term))
+    if since_last_term is None:
+      fd.write('%d,%d,%d,\n' % (num_frame, current_option, current_action))
+    else:
+      fd.write('%d,%d,%d,%d\n' % (num_frame, current_option, current_action, since_last_term))
     fd.close()
 
   def test_dnn(self):
@@ -312,17 +315,24 @@ class DQN_Trainer(Trainer):
       epsilon = self.get_epsilon() if not testing else self.params.optimal_eps
       if termination:
         if self.print_option_stats:
-          self.update_stats(self.frame_count, current_option, since_last_term)
-          # print "terminated -------", since_last_term,
+          stat_since_last_term = since_last_term
+        #   print "terminated -------", since_last_term,
         termination_counter += 1
         since_last_term = 1
         current_option = np.random.randint(self.params.num_options) if np.random.rand() < epsilon else new_option
         #current_option = self.get_option(epsilon, s)
       else:
+        if self.print_option_stats:
+          stat_since_last_term = None
+
         # if self.print_option_stats:
         #   print "keep going",
         since_last_term += 1
       current_action = self.model.get_action(s, [current_option])[0]
+
+      if self.print_option_stats:
+        self.update_stats(self.frame_count, current_option, current_action, stat_since_last_term)
+
       #print current_option, current_action
       if self.print_option_stats:
         # print current_option,# current_action
