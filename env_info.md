@@ -60,7 +60,7 @@ gives
 The command
 
 ```bash
-CUDA_ENV=$(env | grep -e CUDA -e PATH); echo ${CUDA_ENV//$USER/\$USER}
+CUDA_ENV=$(env | grep -e CUDA -e PATH); echo "${CUDA_ENV//$USER/\$USER}"
 ```
 
 gives:
