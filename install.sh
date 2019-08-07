@@ -1,4 +1,8 @@
-# You should activate the Conda environment before running the following commands
+# Create a Conda environment
+conda create -n option_critic -y python=2.7
+
+# Activate the Conda environment
+source activate option_critic
 
 # Install PyPI packages
 pip install -r requirements.txt
@@ -8,11 +12,15 @@ pip install -r requirements.txt
 pip install --upgrade https://github.com/Lasagne/Lasagne/archive/master.zip
 
 # Install Pylearn2
-# Reference: http://deeplearning.net/software/pylearn2/#download-and-installation
-cd $HOME
-git clone git://github.com/lisa-lab/pylearn2.git
+# References:
+# http://deeplearning.net/software/pylearn2/#download-and-installation
+# https://stackoverflow.com/a/57104974
+git clone git://github.com/lisa-lab/pylearn2.git $HOME/pylearn2
+cp fixes/pylearn2/setup.py $HOME/pylearn2/setup.py
+cd $HOME/pylearn2
 python setup.py develop
 cd -
 
-# Change CUDA
-ln -sfn /usr/local/cuda-8.0 ~/.cuda
+# Install libgpuarray
+# Reference: http://deeplearning.net/software/libgpuarray/installation.html
+conda install -y pygpu

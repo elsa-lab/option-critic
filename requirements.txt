@@ -1,5 +1,5 @@
 atari-py
+Cython
 matplotlib
-numpy==1.15.4
 opencv-python
-theano==0.9.0
+theano==1.0.4
