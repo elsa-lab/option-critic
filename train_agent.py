@@ -194,11 +194,12 @@ class Trainer(object):
       raise NotImplementedError
     return resized
 
-  def save_model(self, total_reward, skip_best=False):
+  def save_model(self, total_reward, epoch_idx, skip_best=False):
     if total_reward >= self.best_reward and not skip_best:
       self.best_reward = total_reward
       pkl.dump(self.model.save_params(), open(os.path.join(self.mydir, 'best_model.pkl'), "w"), protocol=pkl.HIGHEST_PROTOCOL)
     pkl.dump(self.model.save_params(), open(os.path.join(self.mydir, 'last_model.pkl'), "w"), protocol=pkl.HIGHEST_PROTOCOL)
+    pkl.dump(self.model.save_params(), open(os.path.join(self.mydir, 'model.epoch-{}.pkl'.format(epoch_idx)), "w"), protocol=pkl.HIGHEST_PROTOCOL)
     print "Saved model"
 
   def run_training_episode(self):
@@ -285,7 +286,7 @@ class Trainer(object):
         self.update_training_results(self.frame_count, total_reward, cur_time)
 
       if self.params.nn_file is None:
-        self.save_model(total_reward)
+        self.save_model(total_reward, i)
       self.update_term_probs(i, self.term_probs)
 
       self.run_testing(i)
