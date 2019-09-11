@@ -1,8 +1,11 @@
+# Enable to use conda functions
+eval "$(conda shell.bash hook)"
+
 # Create a Conda environment
 conda create -n option_critic -y python=2.7
 
 # Activate the Conda environment
-source activate option_critic
+conda activate option_critic
 
 # Install PyPI packages
 pip install -r requirements.txt
