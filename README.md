@@ -5,11 +5,11 @@ Code for the [Option-Critic](https://arxiv.org/pdf/1609.05140v2.pdf) Architectur
 ## Installation
 
 1. Install [Miniconda](https://docs.conda.io/en/latest/miniconda.html)
-2. Run `install.sh`
+2. Run `scripts/install.sh`
 
 ## Training
 
-1. See `train.sh`
+1. See `scripts/train.sh`
 
 ## Testing
 
@@ -21,4 +21,8 @@ python run_best_model.py models/env_id-XXX/seed-XXX/last_model.pkl
 
 ## Uninstallation
 
-1. Run `uninstall.sh`
+1. Run `scripts/uninstall.sh`
+
+## Environment Info
+
+See `Environment Info.md` for environment info on a working machine.
