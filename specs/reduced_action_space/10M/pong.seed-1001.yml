@@ -12,10 +12,10 @@ description: Train option critic on an environment with a specified random seed
 experiment_default:
   envs:
     # Names
-    NAME: classic.run-0
+    NAME: reduced_action_space.10M.run-0
     # Training arguments
-    ENV_ID: breakout
-    EPOCHS: 400
+    ENV_ID: pong
+    EPOCHS: 40
     NUM_OPTIONS: 8
     SEED: 1001
     # CUDA

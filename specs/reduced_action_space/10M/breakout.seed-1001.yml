@@ -12,16 +12,16 @@ description: Train option critic on an environment with a specified random seed
 experiment_default:
   envs:
     # Names
-    NAME: classic.run-0
+    NAME: reduced_action_space.10M.run-0
     # Training arguments
-    ENV_ID: seaquest
-    EPOCHS: 400
+    ENV_ID: breakout
+    EPOCHS: 40
     NUM_OPTIONS: 8
-    SEED: 1002
+    SEED: 1001
     # CUDA
     CUDA_VISIBLE_DEVICES: 0,1,2
     # Theano
-    THEANO_FLAGS: contexts=dev0->cuda0;dev1->cuda1;dev2->cuda2,floatX=float32,device=cuda2
+    THEANO_FLAGS: contexts=dev0->cuda0;dev1->cuda1;dev2->cuda2,floatX=float32,device=cuda1
     # Conda
     CONDA_ENV_NAME: option_critic
     # Tmux
