@@ -15,6 +15,7 @@ class Defaults:
     STEPS_PER_EPOCH = 250000  # 250000
     EPOCHS = 8000
     STEPS_PER_TEST = 130000  # 130000
+    SEED = 1000
 
     # ----------------------
     # ALE Parameters
@@ -59,7 +60,10 @@ class Defaults:
     ENTROPY_REG = 0.01
     BASELINE = True
 
-    SEED = 1000
+    # ----------------------
+    # Action Space
+    # ----------------------
+    REDUCE_ACTION_SPACE = False
 
 
 if __name__ == "__main__":

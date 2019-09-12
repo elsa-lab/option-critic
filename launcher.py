@@ -156,6 +156,9 @@ def process_args(args, defaults, description):
     parser.add_argument('--seed', dest='seed',
                         type=int, default=defaults.SEED,
                         help='Random seed. (default: %(default)s)')
+    parser.add_argument('--reduce_action_space', dest='reduce_action_space',
+                        type=str2bool, default=defaults.REDUCE_ACTION_SPACE,
+                        help='Reduce action space. (default: %(default)s)')
 
     parameters = parser.parse_args(args)
     print parameters

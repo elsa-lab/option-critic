@@ -13,6 +13,7 @@ import theano.tensor as T
 import scipy, scipy.misc
 from neural_net import OptionCritic_Network
 from exp_replay import DataSet
+from action_remapper import ActionRemapper
 # from plot_learning import plot
 
 sys.setrecursionlimit(50000)
@@ -48,6 +49,49 @@ def filecreation_for_testing(folder_name=None):
 
 
 class Trainer(object):
+  def __init__(self, model_params, ale_env, folder_name):
+    self.init_time = time.time()
+    # nn_file only present when watching test
+    if model_params.nn_file is None:
+      self.mydir = filecreation(model_params, folder_name)
+      self.create_results_file()
+    else:
+      self.mydir = filecreation_for_testing(folder_name=folder_name)
+      self.create_stats_files()
+
+    self.params = model_params
+
+    #ale_env.setInt('frame_skip', self.params.frame_skip)
+    ale_env.setFloat('repeat_action_probability', 0.)
+    ale_env.setBool('color_averaging', self.params.mean_frame)
+    ale_env.loadROM(self.params.rom_path)
+
+    # Check whether to reduce action space
+    if model_params.reduce_action_space:
+      # Wrap the environment with action remapper
+      ale_env = ActionRemapper(model_params.rom, ale_env)
+
+    self.print_option_stats = model_params.testing
+    self.term_ratio = 0
+
+    self.test_dnn()
+
+    self.rng = np.random.RandomState(model_params.seed)
+    self.noop_action = 0
+
+    self.frame_count = 0.
+    self.best_reward = -np.inf
+    self.max_frames_per_game = np.inf #18000
+
+    self.ale = ale_env
+    self.legal_actions = self.ale.getMinimalActionSet()
+    print "NUM ACTIONS --->", len(self.legal_actions)
+    self.screen_dims = self.ale.getScreenDims()
+    self.last_dist = 0
+    self.mean_entropy = 0
+
+    self.action_counter = [{j:0 for j in self.legal_actions} for i in range(self.params.num_options)]
+
   def create_results_file(self):
     self.training_results_file = os.path.join(self.mydir, 'training_results.csv')
     data_file = open(self.training_results_file, 'wb')
@@ -114,44 +158,6 @@ class Trainer(object):
     else:
       print "WARNING: NOT USING CUDNN. TRAINING WILL BE SLOWER."
     #self.params.USE_DNN_TYPE=False
-
-  def __init__(self, model_params, ale_env, folder_name):
-    self.init_time = time.time()
-    # nn_file only present when watching test
-    if model_params.nn_file is None:
-      self.mydir = filecreation(model_params, folder_name)
-      self.create_results_file()
-    else:
-      self.mydir = filecreation_for_testing(folder_name=folder_name)
-      self.create_stats_files()
-
-    self.params = model_params
-
-    #ale_env.setInt('frame_skip', self.params.frame_skip)
-    ale_env.setFloat('repeat_action_probability', 0.)
-    ale_env.setBool('color_averaging', self.params.mean_frame)
-    ale_env.loadROM(self.params.rom_path)
-
-    self.print_option_stats = model_params.testing
-    self.term_ratio = 0
-
-    self.test_dnn()
-
-    self.rng = np.random.RandomState(model_params.seed)
-    self.noop_action = 0
-
-    self.frame_count = 0.
-    self.best_reward = -np.inf
-    self.max_frames_per_game = np.inf #18000
-
-    self.ale = ale_env
-    self.legal_actions = self.ale.getMinimalActionSet()
-    print "NUM ACTIONS --->", len(self.legal_actions)
-    self.screen_dims = self.ale.getScreenDims()
-    self.last_dist = 0
-    self.mean_entropy = 0
-
-    self.action_counter = [{j:0 for j in self.legal_actions} for i in range(self.params.num_options)]
 
   def cap_reward(self, reward, testing=False):
     if self.params.do_cap_reward and not testing:
