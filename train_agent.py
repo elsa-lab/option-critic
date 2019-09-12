@@ -141,7 +141,7 @@ class Trainer(object):
     self.noop_action = 0
 
     self.frame_count = 0.
-    self.best_reward = -100.
+    self.best_reward = -np.inf
     self.max_frames_per_game = np.inf #18000
 
     self.ale = ale_env
