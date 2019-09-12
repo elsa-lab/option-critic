@@ -97,7 +97,7 @@ experiments:
       --epochs=$EPOCHS
       --num-options=$NUM_OPTIONS
       --seed=$SEED
-      --reduce_action_space
+      --reduce_action_space=true
       --folder-name=$MODEL_DIR
       > >(tee \"$LOG_STDOUT_PATH\")
       2> >(tee \"$LOG_STDERR_PATH\" >&2)"
