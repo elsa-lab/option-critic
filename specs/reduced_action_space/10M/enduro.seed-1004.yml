@@ -19,7 +19,7 @@ experiment_default:
     NUM_OPTIONS: 8
     SEED: 1004
     # CUDA
-    CUDA_VISIBLE_DEVICES: 0,1,2
+    CUSTOM_CUDA_VISIBLE_DEVICES: 0,1,2
     # Theano
     THEANO_FLAGS: contexts=dev0->cuda0;dev1->cuda1;dev2->cuda2,floatX=float32,device=cuda1
     # Conda
@@ -90,7 +90,7 @@ experiments:
     # Train the algorithm in Tmux detached session
     - >-
       tmux new -d -s "$TMUX_SESSION_NAME"
-      "CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES
+      "CUDA_VISIBLE_DEVICES=$CUSTOM_CUDA_VISIBLE_DEVICES
       THEANO_FLAGS=\"$THEANO_FLAGS\"
       python train_q.py
       --rom=$ENV_ID
