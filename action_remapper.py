@@ -46,12 +46,30 @@ class ActionRemapper:
 
     def _get_action_remap(self):
         # Determine environment ID
-        if self.rom == 'beam_rider':
+        if self.rom == 'asteroids':
+            return {
+                0: 0,  # NOOP
+                1: 1,  # FIRE
+                2: 2,  # UP
+                3: 3,  # RIGHT
+                4: 4,  # LEFT
+                5: 5,  # DOWN
+                6: 6,  # UPRIGHT
+                7: 7,  # UPLEFT
+            }
+        elif self.rom == 'beam_rider':
             return {
                 0: 0,  # NOOP
                 1: 1,  # FIRE
                 2: 3,  # RIGHT
                 3: 4,  # LEFT
+            }
+        elif self.rom == 'bowling':
+            return {
+                0: 0,  # NOOP
+                1: 1,  # FIRE
+                2: 2,  # UP
+                3: 3,  # DOWN
             }
         elif self.rom == 'breakout':
             return self._identity_action_remap()
@@ -62,6 +80,18 @@ class ActionRemapper:
                 2: 2,  # RIGHT
                 3: 3,  # LEFT
                 4: 4,  # DOWN (Decelerate)
+            }
+        elif self.rom == 'freeway':
+            return self._identity_action_remap()
+        elif self.rom == 'kung_fu_master':
+            return self._identity_action_remap()
+        elif self.rom == 'ms_pacman':
+            return {
+                0: 0,  # NOOP
+                1: 1,  # UP
+                2: 2,  # RIGHT
+                3: 3,  # LEFT
+                4: 4,  # DOWN
             }
         elif self.rom == 'pong':
             return {
@@ -86,6 +116,8 @@ class ActionRemapper:
                 4: 4,  # LEFT
                 5: 5,  # DOWN
             }
+        elif self.rom == 'skiing':
+            return self._identity_action_remap()
         elif self.rom == 'space_invaders':
             return {
                 0: 0,  # NOOP
