@@ -98,6 +98,11 @@ class Trainer(object):
     data_file.write('num_frame,episode_reward,time\n')
     data_file.close()
 
+    self.training_results_ep_life_file = os.path.join(self.mydir, 'training_results_ep_life.csv')
+    data_file = open(self.training_results_ep_life_file, 'wb')
+    data_file.write('num_frame,episode_reward_ep_life,time\n')
+    data_file.close()
+
     self.testing_results_file = os.path.join(self.mydir, 'testing_results.csv')
     data_file = open(self.testing_results_file, 'wb')
     data_file.write('epoch,mean_score,mean_q_val,time\n')
@@ -120,6 +125,15 @@ class Trainer(object):
     if self.params.nn_file is None:
       fd = open(self.training_results_file,'a')
       fd.write('%d,%f,%f\n' % (num_frame, episode_reward, cur_time))
+      fd.close()
+      # plot(self.mydir)
+
+  def update_training_results_ep_life(self, num_frame, episode_reward_ep_life, cur_time):
+    # if it isn't, then we are testing and watching a game.
+    # no need to update a file.
+    if self.params.nn_file is None:
+      fd = open(self.training_results_ep_life_file,'a')
+      fd.write('%d,%f,%f\n' % (num_frame, episode_reward_ep_life, cur_time))
       fd.close()
       # plot(self.mydir)
 
@@ -289,6 +303,7 @@ class Trainer(object):
         print 'time: %.3f' % cur_time
         counter += 1
 
+        # Add the total reward to the training results
         self.update_training_results(self.frame_count, total_reward, cur_time)
 
       if self.params.nn_file is None:
@@ -309,6 +324,8 @@ class DQN_Trainer(Trainer):
       return new_x
 
     start_time = time.time()
+
+    episode_reward = 0
 
     total_reward = 0
     data_set = self.test_replay if testing else self.exp_replay
@@ -386,7 +403,13 @@ class DQN_Trainer(Trainer):
       termination, new_option = term_out[0][0], term_out[1][0]
       if self.frame_count < self.params.replay_start_size and not testing:
         termination = 1
+
+      # Add the reward to the total reward
       total_reward += raw_reward
+
+      # Add the reward to the episode reward
+      episode_reward += raw_reward
+
       if self.frame_count > self.params.replay_start_size and not testing:
         self.learn_actor(old_s,
                          np.array(x).reshape(1,4,84,84),
@@ -400,6 +423,18 @@ class DQN_Trainer(Trainer):
           if self.params.freeze_interval > 999:
             print "updated_params"
           self.model.update_target_params()
+
+      # Check whether to add training results after the episode ends
+      if not testing:
+        if life_death or game_over:
+          # Get the current time
+          cur_time = time.time()
+
+          # Add the episode reward to the training results
+          self.update_training_results_ep_life(self.frame_count, episode_reward, cur_time)
+
+          # Reset the episode reward
+          episode_reward = 0
 
     #print self.last_dist
     self.term_ratio = float(termination_counter)/float(episode_counter)
