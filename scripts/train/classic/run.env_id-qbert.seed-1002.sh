@@ -9,7 +9,7 @@ set -euo pipefail
 ################################################################################
 
 # Set the name
-export NAME="classic.run-0"
+export NAME="classic"
 
 ################################################################################
 # Set Variable Training Arguments
