@@ -32,7 +32,7 @@ def create_dir(p):
       raise # This was not a "directory exist" error..
 
 def filecreation(model_params, folder_name=None):
-  tempdir = os.path.join(os.getcwd(), "models")
+  tempdir = os.getcwd()
   create_dir(tempdir)
   folder_name = folder_name if folder_name is not None else datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
   mydir = os.path.join(tempdir, folder_name)
@@ -41,7 +41,7 @@ def filecreation(model_params, folder_name=None):
   return mydir
 
 def filecreation_for_testing(folder_name=None):
-  tempdir = os.path.join(os.getcwd(), "models")
+  tempdir = os.getcwd()
   folder_name = folder_name if folder_name is not None else datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
   mydir = os.path.join(tempdir, folder_name)
   create_dir(mydir)
