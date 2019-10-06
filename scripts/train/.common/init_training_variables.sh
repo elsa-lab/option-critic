@@ -15,3 +15,6 @@ export LOG_STDERR_PATH="$LOG_DIR/stderr.log"
 
 # Set the model directory
 export MODEL_DIR="$ROOT_MODELS_DIR/$SUB_DIR"
+
+# Set the zip path ("/" are replaced with "." in the sub-dir)
+export ZIP_PATH="$ROOT_ZIPS_DIR/${SUB_DIR////.}.zip"

@@ -8,3 +8,6 @@ rm -rf "$LOG_DIR"
 
 # Remove the model directory
 rm -rf "$MODEL_DIR"
+
+# Remove the zip file
+rm -rf "$ZIP_PATH"
