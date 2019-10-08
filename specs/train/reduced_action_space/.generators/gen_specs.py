@@ -12,10 +12,10 @@ RANDOM_SEEDS = range(1000, 1000 + 5)
 SPEC_TEMPLATE_PATH_TO_READ = './template.yml'
 
 # Set the spec template (run contents) to read
-RUN_SPEC_TEMPLATE_PATH_TO_READ = './run.template.yml'
+RUN_SPEC_TEMPLATE_PATH_TO_READ = '../../.templates/run.template.yml'
 
 # Set the spec template (download contents) to read
-DOWNLOAD_SPEC_TEMPLATE_PATH_TO_READ = './download.template.yml'
+DOWNLOAD_SPEC_TEMPLATE_PATH_TO_READ = '../../.templates/run.template.yml'
 
 # Set the spec path to write
 SPEC_PATH_TO_WRITE = '../env_id-{env_id}.yml'

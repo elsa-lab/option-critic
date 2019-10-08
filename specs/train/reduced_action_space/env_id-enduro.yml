@@ -64,31 +64,31 @@ experiments:
     purge:
     - has_log: "==Yes"
   commands:
-    run:
-    # Run the corresponding script
-    - "bash scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
-    stop:
-    # Cause the script to exit on any errors
-    - "set -euo pipefail"
-    # Set the common variables
-    - "source scripts/.common/set_common_variables.sh"
-    # Initialize the training variables
-    - "source scripts/train/.common/init_training_variables.sh"
-    # Run the common script
-    - "bash scripts/train/.common/stop.sh"
-    purge:
-    # Cause the script to exit on any errors
-    - "set -euo pipefail"
-    # Set the common variables
-    - "source scripts/.common/set_common_variables.sh"
-    # Initialize the training variables
-    - "source scripts/train/.common/init_training_variables.sh"
-    # Run the common script
-    - "bash scripts/train/.common/purge.sh"
-    # Remove the local zip
-    - "local:rm -f $ZIP_PATH"
-    # Remove the Noodles status
-    - "local:rm -f logs/noodles/noodles_status.$NAME.$ENV_ID.yml"
+    run: |
+      # Run the corresponding script
+      bash "scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
+    stop: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/stop.sh"
+    purge: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/purge.sh"
+      # Remove the local zip
+      local:rm -f "$ZIP_PATH"
+      # Remove the Noodles status
+      local:rm -f "logs/noodles/noodles_status.$NAME.$ENV_ID.yml"
 
 - name: run.seed-1001
   envs:
@@ -106,31 +106,31 @@ experiments:
     purge:
     - has_log: "==Yes"
   commands:
-    run:
-    # Run the corresponding script
-    - "bash scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
-    stop:
-    # Cause the script to exit on any errors
-    - "set -euo pipefail"
-    # Set the common variables
-    - "source scripts/.common/set_common_variables.sh"
-    # Initialize the training variables
-    - "source scripts/train/.common/init_training_variables.sh"
-    # Run the common script
-    - "bash scripts/train/.common/stop.sh"
-    purge:
-    # Cause the script to exit on any errors
-    - "set -euo pipefail"
-    # Set the common variables
-    - "source scripts/.common/set_common_variables.sh"
-    # Initialize the training variables
-    - "source scripts/train/.common/init_training_variables.sh"
-    # Run the common script
-    - "bash scripts/train/.common/purge.sh"
-    # Remove the local zip
-    - "local:rm -f $ZIP_PATH"
-    # Remove the Noodles status
-    - "local:rm -f logs/noodles/noodles_status.$NAME.$ENV_ID.yml"
+    run: |
+      # Run the corresponding script
+      bash "scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
+    stop: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/stop.sh"
+    purge: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/purge.sh"
+      # Remove the local zip
+      local:rm -f "$ZIP_PATH"
+      # Remove the Noodles status
+      local:rm -f "logs/noodles/noodles_status.$NAME.$ENV_ID.yml"
 
 - name: run.seed-1002
   envs:
@@ -148,31 +148,31 @@ experiments:
     purge:
     - has_log: "==Yes"
   commands:
-    run:
-    # Run the corresponding script
-    - "bash scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
-    stop:
-    # Cause the script to exit on any errors
-    - "set -euo pipefail"
-    # Set the common variables
-    - "source scripts/.common/set_common_variables.sh"
-    # Initialize the training variables
-    - "source scripts/train/.common/init_training_variables.sh"
-    # Run the common script
-    - "bash scripts/train/.common/stop.sh"
-    purge:
-    # Cause the script to exit on any errors
-    - "set -euo pipefail"
-    # Set the common variables
-    - "source scripts/.common/set_common_variables.sh"
-    # Initialize the training variables
-    - "source scripts/train/.common/init_training_variables.sh"
-    # Run the common script
-    - "bash scripts/train/.common/purge.sh"
-    # Remove the local zip
-    - "local:rm -f $ZIP_PATH"
-    # Remove the Noodles status
-    - "local:rm -f logs/noodles/noodles_status.$NAME.$ENV_ID.yml"
+    run: |
+      # Run the corresponding script
+      bash "scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
+    stop: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/stop.sh"
+    purge: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/purge.sh"
+      # Remove the local zip
+      local:rm -f "$ZIP_PATH"
+      # Remove the Noodles status
+      local:rm -f "logs/noodles/noodles_status.$NAME.$ENV_ID.yml"
 
 - name: run.seed-1003
   envs:
@@ -190,31 +190,31 @@ experiments:
     purge:
     - has_log: "==Yes"
   commands:
-    run:
-    # Run the corresponding script
-    - "bash scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
-    stop:
-    # Cause the script to exit on any errors
-    - "set -euo pipefail"
-    # Set the common variables
-    - "source scripts/.common/set_common_variables.sh"
-    # Initialize the training variables
-    - "source scripts/train/.common/init_training_variables.sh"
-    # Run the common script
-    - "bash scripts/train/.common/stop.sh"
-    purge:
-    # Cause the script to exit on any errors
-    - "set -euo pipefail"
-    # Set the common variables
-    - "source scripts/.common/set_common_variables.sh"
-    # Initialize the training variables
-    - "source scripts/train/.common/init_training_variables.sh"
-    # Run the common script
-    - "bash scripts/train/.common/purge.sh"
-    # Remove the local zip
-    - "local:rm -f $ZIP_PATH"
-    # Remove the Noodles status
-    - "local:rm -f logs/noodles/noodles_status.$NAME.$ENV_ID.yml"
+    run: |
+      # Run the corresponding script
+      bash "scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
+    stop: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/stop.sh"
+    purge: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/purge.sh"
+      # Remove the local zip
+      local:rm -f "$ZIP_PATH"
+      # Remove the Noodles status
+      local:rm -f "logs/noodles/noodles_status.$NAME.$ENV_ID.yml"
 
 - name: run.seed-1004
   envs:
@@ -232,144 +232,244 @@ experiments:
     purge:
     - has_log: "==Yes"
   commands:
-    run:
-    # Run the corresponding script
-    - "bash scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
-    stop:
-    # Cause the script to exit on any errors
-    - "set -euo pipefail"
-    # Set the common variables
-    - "source scripts/.common/set_common_variables.sh"
-    # Initialize the training variables
-    - "source scripts/train/.common/init_training_variables.sh"
-    # Run the common script
-    - "bash scripts/train/.common/stop.sh"
-    purge:
-    # Cause the script to exit on any errors
-    - "set -euo pipefail"
-    # Set the common variables
-    - "source scripts/.common/set_common_variables.sh"
-    # Initialize the training variables
-    - "source scripts/train/.common/init_training_variables.sh"
-    # Run the common script
-    - "bash scripts/train/.common/purge.sh"
-    # Remove the local zip
-    - "local:rm -f $ZIP_PATH"
-    # Remove the Noodles status
-    - "local:rm -f logs/noodles/noodles_status.$NAME.$ENV_ID.yml"
+    run: |
+      # Run the corresponding script
+      bash "scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
+    stop: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/stop.sh"
+    purge: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/purge.sh"
+      # Remove the local zip
+      local:rm -f "$ZIP_PATH"
+      # Remove the Noodles status
+      local:rm -f "logs/noodles/noodles_status.$NAME.$ENV_ID.yml"
 
 
 ### Download ###
 
-- name: download.seed-1000
-  description: Zip the experimental results and download the zip to local
+- name: run.seed-1000
   envs:
     SEED: 1000
-  depends_on:
-    run:
-    - run.seed-1000
   requirements:
     run:
+    - cpu_usage: "<0.7"
+    - cpu_load: "<60"
+    - memory_usage: "<0.5"
+    - cuda_gpu_utilization: "<0.7"
+    - cuda_memory_usage: "<0.5"
+    - project_tmux_count: "<8"
+    stop:
     - has_log: "==Yes"
-    - tmux_count: "<=0"
+    purge:
+    - has_log: "==Yes"
   commands:
-    run:
-    # Cause the script to exit on any errors
-    - "set -euo pipefail"
-    # Set the common variables
-    - "source scripts/.common/set_common_variables.sh"
-    # Initialize the training variables
-    - "source scripts/train/.common/init_training_variables.sh"
-    # Use SCP to download the zip to local
-    - "local:scp $NOODLES_SERVER_AUTHORITY:\"$ZIP_PATH\" \"$ZIP_PATH\""
+    run: |
+      # Run the corresponding script
+      bash "scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
+    stop: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/stop.sh"
+    purge: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/purge.sh"
+      # Remove the local zip
+      local:rm -f "$ZIP_PATH"
+      # Remove the Noodles status
+      local:rm -f "logs/noodles/noodles_status.$NAME.$ENV_ID.yml"
 
-- name: download.seed-1001
-  description: Zip the experimental results and download the zip to local
+- name: run.seed-1001
   envs:
     SEED: 1001
-  depends_on:
-    run:
-    - run.seed-1001
   requirements:
     run:
+    - cpu_usage: "<0.7"
+    - cpu_load: "<60"
+    - memory_usage: "<0.5"
+    - cuda_gpu_utilization: "<0.7"
+    - cuda_memory_usage: "<0.5"
+    - project_tmux_count: "<8"
+    stop:
     - has_log: "==Yes"
-    - tmux_count: "<=0"
+    purge:
+    - has_log: "==Yes"
   commands:
-    run:
-    # Cause the script to exit on any errors
-    - "set -euo pipefail"
-    # Set the common variables
-    - "source scripts/.common/set_common_variables.sh"
-    # Initialize the training variables
-    - "source scripts/train/.common/init_training_variables.sh"
-    # Use SCP to download the zip to local
-    - "local:scp $NOODLES_SERVER_AUTHORITY:\"$ZIP_PATH\" \"$ZIP_PATH\""
+    run: |
+      # Run the corresponding script
+      bash "scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
+    stop: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/stop.sh"
+    purge: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/purge.sh"
+      # Remove the local zip
+      local:rm -f "$ZIP_PATH"
+      # Remove the Noodles status
+      local:rm -f "logs/noodles/noodles_status.$NAME.$ENV_ID.yml"
 
-- name: download.seed-1002
-  description: Zip the experimental results and download the zip to local
+- name: run.seed-1002
   envs:
     SEED: 1002
-  depends_on:
-    run:
-    - run.seed-1002
   requirements:
     run:
+    - cpu_usage: "<0.7"
+    - cpu_load: "<60"
+    - memory_usage: "<0.5"
+    - cuda_gpu_utilization: "<0.7"
+    - cuda_memory_usage: "<0.5"
+    - project_tmux_count: "<8"
+    stop:
     - has_log: "==Yes"
-    - tmux_count: "<=0"
+    purge:
+    - has_log: "==Yes"
   commands:
-    run:
-    # Cause the script to exit on any errors
-    - "set -euo pipefail"
-    # Set the common variables
-    - "source scripts/.common/set_common_variables.sh"
-    # Initialize the training variables
-    - "source scripts/train/.common/init_training_variables.sh"
-    # Use SCP to download the zip to local
-    - "local:scp $NOODLES_SERVER_AUTHORITY:\"$ZIP_PATH\" \"$ZIP_PATH\""
+    run: |
+      # Run the corresponding script
+      bash "scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
+    stop: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/stop.sh"
+    purge: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/purge.sh"
+      # Remove the local zip
+      local:rm -f "$ZIP_PATH"
+      # Remove the Noodles status
+      local:rm -f "logs/noodles/noodles_status.$NAME.$ENV_ID.yml"
 
-- name: download.seed-1003
-  description: Zip the experimental results and download the zip to local
+- name: run.seed-1003
   envs:
     SEED: 1003
-  depends_on:
-    run:
-    - run.seed-1003
   requirements:
     run:
+    - cpu_usage: "<0.7"
+    - cpu_load: "<60"
+    - memory_usage: "<0.5"
+    - cuda_gpu_utilization: "<0.7"
+    - cuda_memory_usage: "<0.5"
+    - project_tmux_count: "<8"
+    stop:
     - has_log: "==Yes"
-    - tmux_count: "<=0"
+    purge:
+    - has_log: "==Yes"
   commands:
-    run:
-    # Cause the script to exit on any errors
-    - "set -euo pipefail"
-    # Set the common variables
-    - "source scripts/.common/set_common_variables.sh"
-    # Initialize the training variables
-    - "source scripts/train/.common/init_training_variables.sh"
-    # Use SCP to download the zip to local
-    - "local:scp $NOODLES_SERVER_AUTHORITY:\"$ZIP_PATH\" \"$ZIP_PATH\""
+    run: |
+      # Run the corresponding script
+      bash "scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
+    stop: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/stop.sh"
+    purge: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/purge.sh"
+      # Remove the local zip
+      local:rm -f "$ZIP_PATH"
+      # Remove the Noodles status
+      local:rm -f "logs/noodles/noodles_status.$NAME.$ENV_ID.yml"
 
-- name: download.seed-1004
-  description: Zip the experimental results and download the zip to local
+- name: run.seed-1004
   envs:
     SEED: 1004
-  depends_on:
-    run:
-    - run.seed-1004
   requirements:
     run:
+    - cpu_usage: "<0.7"
+    - cpu_load: "<60"
+    - memory_usage: "<0.5"
+    - cuda_gpu_utilization: "<0.7"
+    - cuda_memory_usage: "<0.5"
+    - project_tmux_count: "<8"
+    stop:
     - has_log: "==Yes"
-    - tmux_count: "<=0"
+    purge:
+    - has_log: "==Yes"
   commands:
-    run:
-    # Cause the script to exit on any errors
-    - "set -euo pipefail"
-    # Set the common variables
-    - "source scripts/.common/set_common_variables.sh"
-    # Initialize the training variables
-    - "source scripts/train/.common/init_training_variables.sh"
-    # Use SCP to download the zip to local
-    - "local:scp $NOODLES_SERVER_AUTHORITY:\"$ZIP_PATH\" \"$ZIP_PATH\""
+    run: |
+      # Run the corresponding script
+      bash "scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
+    stop: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/stop.sh"
+    purge: |
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/purge.sh"
+      # Remove the local zip
+      local:rm -f "$ZIP_PATH"
+      # Remove the Noodles status
+      local:rm -f "logs/noodles/noodles_status.$NAME.$ENV_ID.yml"
 
 
 ################################################################################
