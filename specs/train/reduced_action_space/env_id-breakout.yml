@@ -53,12 +53,12 @@ experiments:
     SEED: 1000
   requirements:
     run:
-    - cpu_usage: "<=0.7"
-    - cpu_load: "<=60"
-    - memory_usage: "<=0.5"
-    - cuda_gpu_utilization: "<=0.7"
-    - cuda_memory_usage: "<=0.5"
-    - project_tmux_count: "<=8"
+    - cpu_usage: "<0.7"
+    - cpu_load: "<60"
+    - memory_usage: "<0.5"
+    - cuda_gpu_utilization: "<0.7"
+    - cuda_memory_usage: "<0.5"
+    - project_tmux_count: "<8"
     stop:
     - has_log: "==Yes"
     purge:
@@ -66,7 +66,7 @@ experiments:
   commands:
     run:
     # Run the corresponding script
-    - "bash scripts/train/reduced_action_space/run.env_id-$ENV_ID.seed-$SEED.sh"
+    - "bash scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
     stop:
     # Cause the script to exit on any errors
     - "set -euo pipefail"
@@ -95,12 +95,12 @@ experiments:
     SEED: 1001
   requirements:
     run:
-    - cpu_usage: "<=0.7"
-    - cpu_load: "<=60"
-    - memory_usage: "<=0.5"
-    - cuda_gpu_utilization: "<=0.7"
-    - cuda_memory_usage: "<=0.5"
-    - project_tmux_count: "<=8"
+    - cpu_usage: "<0.7"
+    - cpu_load: "<60"
+    - memory_usage: "<0.5"
+    - cuda_gpu_utilization: "<0.7"
+    - cuda_memory_usage: "<0.5"
+    - project_tmux_count: "<8"
     stop:
     - has_log: "==Yes"
     purge:
@@ -108,7 +108,7 @@ experiments:
   commands:
     run:
     # Run the corresponding script
-    - "bash scripts/train/reduced_action_space/run.env_id-$ENV_ID.seed-$SEED.sh"
+    - "bash scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
     stop:
     # Cause the script to exit on any errors
     - "set -euo pipefail"
@@ -137,12 +137,12 @@ experiments:
     SEED: 1002
   requirements:
     run:
-    - cpu_usage: "<=0.7"
-    - cpu_load: "<=60"
-    - memory_usage: "<=0.5"
-    - cuda_gpu_utilization: "<=0.7"
-    - cuda_memory_usage: "<=0.5"
-    - project_tmux_count: "<=8"
+    - cpu_usage: "<0.7"
+    - cpu_load: "<60"
+    - memory_usage: "<0.5"
+    - cuda_gpu_utilization: "<0.7"
+    - cuda_memory_usage: "<0.5"
+    - project_tmux_count: "<8"
     stop:
     - has_log: "==Yes"
     purge:
@@ -150,7 +150,7 @@ experiments:
   commands:
     run:
     # Run the corresponding script
-    - "bash scripts/train/reduced_action_space/run.env_id-$ENV_ID.seed-$SEED.sh"
+    - "bash scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
     stop:
     # Cause the script to exit on any errors
     - "set -euo pipefail"
@@ -179,12 +179,12 @@ experiments:
     SEED: 1003
   requirements:
     run:
-    - cpu_usage: "<=0.7"
-    - cpu_load: "<=60"
-    - memory_usage: "<=0.5"
-    - cuda_gpu_utilization: "<=0.7"
-    - cuda_memory_usage: "<=0.5"
-    - project_tmux_count: "<=8"
+    - cpu_usage: "<0.7"
+    - cpu_load: "<60"
+    - memory_usage: "<0.5"
+    - cuda_gpu_utilization: "<0.7"
+    - cuda_memory_usage: "<0.5"
+    - project_tmux_count: "<8"
     stop:
     - has_log: "==Yes"
     purge:
@@ -192,7 +192,7 @@ experiments:
   commands:
     run:
     # Run the corresponding script
-    - "bash scripts/train/reduced_action_space/run.env_id-$ENV_ID.seed-$SEED.sh"
+    - "bash scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
     stop:
     # Cause the script to exit on any errors
     - "set -euo pipefail"
@@ -221,12 +221,12 @@ experiments:
     SEED: 1004
   requirements:
     run:
-    - cpu_usage: "<=0.7"
-    - cpu_load: "<=60"
-    - memory_usage: "<=0.5"
-    - cuda_gpu_utilization: "<=0.7"
-    - cuda_memory_usage: "<=0.5"
-    - project_tmux_count: "<=8"
+    - cpu_usage: "<0.7"
+    - cpu_load: "<60"
+    - memory_usage: "<0.5"
+    - cuda_gpu_utilization: "<0.7"
+    - cuda_memory_usage: "<0.5"
+    - project_tmux_count: "<8"
     stop:
     - has_log: "==Yes"
     purge:
@@ -234,7 +234,7 @@ experiments:
   commands:
     run:
     # Run the corresponding script
-    - "bash scripts/train/reduced_action_space/run.env_id-$ENV_ID.seed-$SEED.sh"
+    - "bash scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
     stop:
     # Cause the script to exit on any errors
     - "set -euo pipefail"
