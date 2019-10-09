@@ -1,0 +1,57 @@
+- name: run.seed-{random_seed}
+  envs:
+    SEED: {random_seed}
+  requirements:
+    run:
+    - cpu_usage: "<0.7"
+    - cpu_load: "<60"
+    - memory_usage: "<0.5"
+    - cuda_gpu_utilization: "<0.7"
+    - cuda_memory_usage: "<0.5"
+    - project_tmux_count: "<8"
+    stop:
+    - has_log: "==Yes"
+    purge:
+    - has_log: "==Yes"
+  commands:
+    run: |
+      # Run .bash_profile
+      test -f $HOME/.bash_profile && source $HOME/.bash_profile
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Go to the project directory
+      cd "$PROJECT_DIR"
+      # Run the corresponding script
+      bash "scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
+    stop: |
+      # Run .bash_profile
+      test -f $HOME/.bash_profile && source $HOME/.bash_profile
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Go to the project directory
+      cd "$PROJECT_DIR"
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/stop.sh"
+    purge: |
+      # Run .bash_profile
+      test -f $HOME/.bash_profile && source $HOME/.bash_profile
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Go to the project directory
+      cd "$PROJECT_DIR"
+      # Set the common variables
+      source "scripts/.common/set_common_variables.sh"
+      # Initialize the training variables
+      source "scripts/train/.common/init_training_variables.sh"
+      # Run the common script
+      bash "scripts/train/.common/purge.sh"
+      # Remove the remote zip
+      rm -f "$ZIP_PATH"
+      # Remove the local zip
+      local:rm -f "$ZIP_PATH"
+      # Remove the Noodles status
+      local:rm -f "logs/noodles/noodles_status.$NAME.$ENV_ID.yml"
