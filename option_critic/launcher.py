@@ -1,10 +1,12 @@
+import argparse
 import os
 import sys
-import argparse
+
+from atari_py import ALEInterface
 import numpy as np
 import theano
-from atari_py import ALEInterface
-from train_agent import Q_Learning
+
+from option_critic.train_agent import Q_Learning
 
 
 def str2bool(v):

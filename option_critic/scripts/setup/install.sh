@@ -5,10 +5,10 @@
 set -euo pipefail
 
 # Set common variables
-source "scripts/.common/set_common_variables.sh"
+source "option_critic/scripts/_common/set_common_variables.sh"
 
 # Initialize conda
-source "scripts/.common/init_conda.sh"
+source "option_critic/scripts/_common/init_conda.sh"
 
 # Create a conda environment
 conda create -n "$CONDA_ENV_NAME" -y python=2.7
@@ -16,8 +16,8 @@ conda create -n "$CONDA_ENV_NAME" -y python=2.7
 # Activate the conda environment
 conda activate "$CONDA_ENV_NAME"
 
-# Install the Python dependencies
-pip install -r requirements.txt
+# Install the project in development mode
+pip install -e .
 
 # Install libgpuarray
 # Reference: http://deeplearning.net/software/libgpuarray/installation.html

@@ -5,7 +5,7 @@
 set -euo pipefail
 
 # Run the uninstallation script
-bash "scripts/setup/uninstall.sh"
+bash "option_critic/scripts/setup/uninstall.sh"
 
 # Remove the logs directory
 rm -rf logs

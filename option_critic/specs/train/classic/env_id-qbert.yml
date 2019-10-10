@@ -1,5 +1,5 @@
 # Name of the spec
-name: option_critic
+name: option_critic classic
 
 # Description of the spec
 description: Train option critic on an environment
@@ -21,11 +21,11 @@ experiment_default:
     ENV_ID: qbert
     # Project directory
     PROJECT_DIR: "$HOME/option_critic"
-    # Copied from "scripts/.common/set_common_variables.sh"
+    # Copied from "scripts/_common/set_common_variables.sh"
     CONDA_ENV_NAME: option_critic
     ROOT_LOGS_DIR: logs
     ROOT_ZIPS_DIR: zips
-    # Copied from "scripts/train/.common/init_training_variables.sh"
+    # Copied from "scripts/train/_common/init_training_variables.sh"
     SUB_DIR: "$NAME/env_id-$ENV_ID/seed-$SEED"
     TMUX_SESSION_NAME: "train/$CONDA_ENV_NAME/${SUB_DIR//./,}"
     PROJECT_TMUX_SESSION_PATTERN: "train/$CONDA_ENV_NAME"
@@ -144,7 +144,7 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Run the corresponding script
-      bash "scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
+      bash "option_critic/scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
     stop: |
       # Run .bash_profile
       test -f $HOME/.bash_profile && source $HOME/.bash_profile
@@ -153,11 +153,11 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Set the common variables
-      source "scripts/.common/set_common_variables.sh"
+      source "option_critic/scripts/_common/set_common_variables.sh"
       # Initialize the training variables
-      source "scripts/train/.common/init_training_variables.sh"
+      source "option_critic/scripts/train/_common/init_training_variables.sh"
       # Run the common script
-      bash "scripts/train/.common/stop.sh"
+      bash "option_critic/scripts/train/_common/stop.sh"
     purge: |
       # Run .bash_profile
       test -f $HOME/.bash_profile && source $HOME/.bash_profile
@@ -166,11 +166,11 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Set the common variables
-      source "scripts/.common/set_common_variables.sh"
+      source "option_critic/scripts/_common/set_common_variables.sh"
       # Initialize the training variables
-      source "scripts/train/.common/init_training_variables.sh"
+      source "option_critic/scripts/train/_common/init_training_variables.sh"
       # Run the common script
-      bash "scripts/train/.common/purge.sh"
+      bash "option_critic/scripts/train/_common/purge.sh"
       # Remove the remote zip
       rm -f "$ZIP_PATH"
       # Remove the local zip
@@ -202,7 +202,7 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Run the corresponding script
-      bash "scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
+      bash "option_critic/scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
     stop: |
       # Run .bash_profile
       test -f $HOME/.bash_profile && source $HOME/.bash_profile
@@ -211,11 +211,11 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Set the common variables
-      source "scripts/.common/set_common_variables.sh"
+      source "option_critic/scripts/_common/set_common_variables.sh"
       # Initialize the training variables
-      source "scripts/train/.common/init_training_variables.sh"
+      source "option_critic/scripts/train/_common/init_training_variables.sh"
       # Run the common script
-      bash "scripts/train/.common/stop.sh"
+      bash "option_critic/scripts/train/_common/stop.sh"
     purge: |
       # Run .bash_profile
       test -f $HOME/.bash_profile && source $HOME/.bash_profile
@@ -224,11 +224,11 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Set the common variables
-      source "scripts/.common/set_common_variables.sh"
+      source "option_critic/scripts/_common/set_common_variables.sh"
       # Initialize the training variables
-      source "scripts/train/.common/init_training_variables.sh"
+      source "option_critic/scripts/train/_common/init_training_variables.sh"
       # Run the common script
-      bash "scripts/train/.common/purge.sh"
+      bash "option_critic/scripts/train/_common/purge.sh"
       # Remove the remote zip
       rm -f "$ZIP_PATH"
       # Remove the local zip
@@ -260,7 +260,7 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Run the corresponding script
-      bash "scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
+      bash "option_critic/scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
     stop: |
       # Run .bash_profile
       test -f $HOME/.bash_profile && source $HOME/.bash_profile
@@ -269,11 +269,11 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Set the common variables
-      source "scripts/.common/set_common_variables.sh"
+      source "option_critic/scripts/_common/set_common_variables.sh"
       # Initialize the training variables
-      source "scripts/train/.common/init_training_variables.sh"
+      source "option_critic/scripts/train/_common/init_training_variables.sh"
       # Run the common script
-      bash "scripts/train/.common/stop.sh"
+      bash "option_critic/scripts/train/_common/stop.sh"
     purge: |
       # Run .bash_profile
       test -f $HOME/.bash_profile && source $HOME/.bash_profile
@@ -282,11 +282,11 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Set the common variables
-      source "scripts/.common/set_common_variables.sh"
+      source "option_critic/scripts/_common/set_common_variables.sh"
       # Initialize the training variables
-      source "scripts/train/.common/init_training_variables.sh"
+      source "option_critic/scripts/train/_common/init_training_variables.sh"
       # Run the common script
-      bash "scripts/train/.common/purge.sh"
+      bash "option_critic/scripts/train/_common/purge.sh"
       # Remove the remote zip
       rm -f "$ZIP_PATH"
       # Remove the local zip
@@ -318,7 +318,7 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Run the corresponding script
-      bash "scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
+      bash "option_critic/scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
     stop: |
       # Run .bash_profile
       test -f $HOME/.bash_profile && source $HOME/.bash_profile
@@ -327,11 +327,11 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Set the common variables
-      source "scripts/.common/set_common_variables.sh"
+      source "option_critic/scripts/_common/set_common_variables.sh"
       # Initialize the training variables
-      source "scripts/train/.common/init_training_variables.sh"
+      source "option_critic/scripts/train/_common/init_training_variables.sh"
       # Run the common script
-      bash "scripts/train/.common/stop.sh"
+      bash "option_critic/scripts/train/_common/stop.sh"
     purge: |
       # Run .bash_profile
       test -f $HOME/.bash_profile && source $HOME/.bash_profile
@@ -340,11 +340,11 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Set the common variables
-      source "scripts/.common/set_common_variables.sh"
+      source "option_critic/scripts/_common/set_common_variables.sh"
       # Initialize the training variables
-      source "scripts/train/.common/init_training_variables.sh"
+      source "option_critic/scripts/train/_common/init_training_variables.sh"
       # Run the common script
-      bash "scripts/train/.common/purge.sh"
+      bash "option_critic/scripts/train/_common/purge.sh"
       # Remove the remote zip
       rm -f "$ZIP_PATH"
       # Remove the local zip
@@ -376,7 +376,7 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Run the corresponding script
-      bash "scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
+      bash "option_critic/scripts/train/$NAME/run.env_id-$ENV_ID.seed-$SEED.sh"
     stop: |
       # Run .bash_profile
       test -f $HOME/.bash_profile && source $HOME/.bash_profile
@@ -385,11 +385,11 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Set the common variables
-      source "scripts/.common/set_common_variables.sh"
+      source "option_critic/scripts/_common/set_common_variables.sh"
       # Initialize the training variables
-      source "scripts/train/.common/init_training_variables.sh"
+      source "option_critic/scripts/train/_common/init_training_variables.sh"
       # Run the common script
-      bash "scripts/train/.common/stop.sh"
+      bash "option_critic/scripts/train/_common/stop.sh"
     purge: |
       # Run .bash_profile
       test -f $HOME/.bash_profile && source $HOME/.bash_profile
@@ -398,11 +398,11 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Set the common variables
-      source "scripts/.common/set_common_variables.sh"
+      source "option_critic/scripts/_common/set_common_variables.sh"
       # Initialize the training variables
-      source "scripts/train/.common/init_training_variables.sh"
+      source "option_critic/scripts/train/_common/init_training_variables.sh"
       # Run the common script
-      bash "scripts/train/.common/purge.sh"
+      bash "option_critic/scripts/train/_common/purge.sh"
       # Remove the remote zip
       rm -f "$ZIP_PATH"
       # Remove the local zip
@@ -433,9 +433,9 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Set the common variables
-      source "scripts/.common/set_common_variables.sh"
+      source "option_critic/scripts/_common/set_common_variables.sh"
       # Initialize the training variables
-      source "scripts/train/.common/init_training_variables.sh"
+      source "option_critic/scripts/train/_common/init_training_variables.sh"
       # Use SCP to download the zip to local
       local:scp "$NOODLES_SERVER_AUTHORITY:$ZIP_PATH" "$ZIP_PATH"
 
@@ -459,9 +459,9 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Set the common variables
-      source "scripts/.common/set_common_variables.sh"
+      source "option_critic/scripts/_common/set_common_variables.sh"
       # Initialize the training variables
-      source "scripts/train/.common/init_training_variables.sh"
+      source "option_critic/scripts/train/_common/init_training_variables.sh"
       # Use SCP to download the zip to local
       local:scp "$NOODLES_SERVER_AUTHORITY:$ZIP_PATH" "$ZIP_PATH"
 
@@ -485,9 +485,9 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Set the common variables
-      source "scripts/.common/set_common_variables.sh"
+      source "option_critic/scripts/_common/set_common_variables.sh"
       # Initialize the training variables
-      source "scripts/train/.common/init_training_variables.sh"
+      source "option_critic/scripts/train/_common/init_training_variables.sh"
       # Use SCP to download the zip to local
       local:scp "$NOODLES_SERVER_AUTHORITY:$ZIP_PATH" "$ZIP_PATH"
 
@@ -511,9 +511,9 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Set the common variables
-      source "scripts/.common/set_common_variables.sh"
+      source "option_critic/scripts/_common/set_common_variables.sh"
       # Initialize the training variables
-      source "scripts/train/.common/init_training_variables.sh"
+      source "option_critic/scripts/train/_common/init_training_variables.sh"
       # Use SCP to download the zip to local
       local:scp "$NOODLES_SERVER_AUTHORITY:$ZIP_PATH" "$ZIP_PATH"
 
@@ -537,9 +537,9 @@ experiments:
       # Go to the project directory
       cd "$PROJECT_DIR"
       # Set the common variables
-      source "scripts/.common/set_common_variables.sh"
+      source "option_critic/scripts/_common/set_common_variables.sh"
       # Initialize the training variables
-      source "scripts/train/.common/init_training_variables.sh"
+      source "option_critic/scripts/train/_common/init_training_variables.sh"
       # Use SCP to download the zip to local
       local:scp "$NOODLES_SERVER_AUTHORITY:$ZIP_PATH" "$ZIP_PATH"
 

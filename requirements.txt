@@ -1,7 +1,0 @@
-atari-py
-Cython
-gputil==1.4.0
-matplotlib
-numpy
-opencv-python
-theano==1.0.4

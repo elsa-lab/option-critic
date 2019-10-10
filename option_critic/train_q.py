@@ -5,7 +5,8 @@ Execute a training run of deep-Q-Leaning.
 """
 
 import sys
-import launcher
+
+from option_critic import launcher
 
 
 class Defaults:

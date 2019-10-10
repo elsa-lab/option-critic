@@ -5,10 +5,10 @@
 set -euo pipefail
 
 # Set common variables
-source "scripts/.common/set_common_variables.sh"
+source "option_critic/scripts/_common/set_common_variables.sh"
 
 # Initialize conda
-source "scripts/.common/init_conda.sh"
+source "option_critic/scripts/_common/init_conda.sh"
 
 # Remove the conda environment
 conda remove -n "$CONDA_ENV_NAME" -y --all

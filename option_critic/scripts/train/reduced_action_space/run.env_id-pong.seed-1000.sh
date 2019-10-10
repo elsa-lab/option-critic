@@ -22,31 +22,8 @@ export ENV_ID="pong"
 export SEED=1000
 
 ################################################################################
-# Set Fixed Training Arguments
-################################################################################
-
-# Set the number of epochs
-export EPOCHS=400
-
-# Set the number of options
-export NUM_OPTIONS=8
-
-################################################################################
-# Initialization
-################################################################################
-
-# Set the common variables
-source "scripts/.common/set_common_variables.sh"
-
-# Initialize the training variables
-source "scripts/train/.common/init_training_variables.sh"
-
-# Initialize the training environment
-source "scripts/train/.common/init_training_environment.sh"
-
-################################################################################
-# Start Training
+# Run the Common Script
 ################################################################################
 
 # Run the common script
-bash "scripts/train/reduced_action_space/.common/run.sh"
+bash "option_critic/scripts/train/$NAME/_common/run.sh"

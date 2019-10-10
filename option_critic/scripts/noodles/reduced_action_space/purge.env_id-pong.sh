@@ -9,18 +9,18 @@ set -euo pipefail
 ################################################################################
 
 # Set the Noodles action
-export NOODLES_ACTION=purge
+export NOODLES_ACTION="purge"
 
 ################################################################################
 # Set Paths
 ################################################################################
 
 # Set the path of the spec
-export SPEC_PATH='specs/train/reduced_action_space/env_id-pong.yml'
+export SPEC_PATH='option_critic/specs/train/reduced_action_space/env_id-pong.yml'
 
 ################################################################################
 # Start Training
 ################################################################################
 
 # Run the common script
-bash "scripts/noodles/.common/$NOODLES_ACTION.sh"
+bash "option_critic/scripts/noodles/_common/$NOODLES_ACTION.sh"
