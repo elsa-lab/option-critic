@@ -9,9 +9,9 @@ def parse_args():
         description='Get an available CUDA device')
 
     # Add arguments
-    parser.add_argument('--max_load', default=0.7, type=float,
+    parser.add_argument('--max_load', default=0.5, type=float,
                         help='Select GPU device when the load is below it')
-    parser.add_argument('--max_memory', default=0.7, type=float,
+    parser.add_argument('--max_memory', default=0.5, type=float,
                         help='Select GPU device when the memory is below it')
 
     # Parse the arguments
