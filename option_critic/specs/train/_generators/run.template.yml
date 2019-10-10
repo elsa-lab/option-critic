@@ -36,7 +36,8 @@
       source "option_critic/scripts/train/_common/init_training_variables.sh"
       # Run the common script
       bash "option_critic/scripts/train/_common/stop.sh"
-    purge: |
+    purge:
+    - |
       # Run .bash_profile
       test -f $HOME/.bash_profile && source $HOME/.bash_profile
       # Cause the script to exit on any errors
@@ -51,7 +52,7 @@
       bash "option_critic/scripts/train/_common/purge.sh"
       # Remove the remote zip
       rm -f "$ZIP_PATH"
-      # Remove the local zip
-      local:rm -f "$ZIP_PATH"
-      # Remove the Noodles status
-      local:rm -f "logs/noodles/noodles_status.$NAME.$ENV_ID.yml"
+    # Remove the local zip
+    - local:rm -f "$ZIP_PATH"
+    # Remove the Noodles status
+    - local:rm -f "logs/noodles/noodles_status.$NAME.$ENV_ID.yml"

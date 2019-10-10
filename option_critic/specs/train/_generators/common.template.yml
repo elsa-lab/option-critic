@@ -67,9 +67,9 @@ servers:
 
 requirements:
   # Check whether the STDOUT log exists
-  has_log: "test -f \"$LOG_STDOUT_PATH\" && echo -n Yes || echo -n No"
+  has_log: "test -f \"$PROJECT_DIR/$LOG_STDOUT_PATH\" && echo -n Yes || echo -n No"
   # Check whether the final zip file exists
-  has_zip: "test -f \"$ZIP_PATH\" && echo -n Yes || echo -n No"
+  has_zip: "test -f \"$PROJECT_DIR/$ZIP_PATH\" && echo -n Yes || echo -n No"
   # Count the Tmux session
   tmux_count: "tmux ls 2>/dev/null | grep $TMUX_SESSION_NAME | wc -l"
   # Count all Tmux sessions related to the current project
