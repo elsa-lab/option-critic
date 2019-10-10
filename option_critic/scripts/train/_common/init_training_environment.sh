@@ -19,6 +19,12 @@ export CUDA_VISIBLE_DEVICES="$CUDA_DEVICE_ID"
 # Set the Theano flags
 export THEANO_FLAGS="contexts=dev0->cuda0,floatX=float32,device=cuda0"
 
+# Print the CUDA visible devices
+echo "\$CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES"
+
+# Print the Theano flags
+echo "\$THEANO_FLAGS=$THEANO_FLAGS"
+
 # Make sure the log directory exists
 mkdir -p "$LOG_DIR"
 

@@ -34,7 +34,9 @@ export NUM_OPTIONS=8
 # 1. Run training in a Tmux detached session
 # 2. Zip the experimental results
 tmux new -d -s "$TMUX_SESSION_NAME" \
-    "python option_critic/train_q.py \
+    "CUDA_VISIBLE_DEVICES=\"$CUDA_VISIBLE_DEVICES\" \
+    THEANO_FLAGS=\"$THEANO_FLAGS\" \
+    python option_critic/train_q.py \
     --rom=$ENV_ID \
     --epochs=$EPOCHS \
     --num-options=$NUM_OPTIONS \
