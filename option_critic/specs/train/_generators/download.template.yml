@@ -11,16 +11,5 @@
     - has_zip: "==Yes"
   commands:
     run:
-    - |
-      # Run .bash_profile if it exists
-      test -f $HOME/.bash_profile && source $HOME/.bash_profile
-      # Cause the script to exit on any errors
-      set -euo pipefail
-      # Go to the project directory
-      cd "$PROJECT_DIR"
-      # Set the common variables
-      source "option_critic/scripts/_common/set_common_variables.sh"
-      # Initialize the training variables
-      source "option_critic/scripts/train/_common/init_training_variables.sh"
     # Use SCP to download the zip to local
-    - local:scp "$NOODLES_SERVER_AUTHORITY:$ZIP_PATH" "$ZIP_PATH"
+    - local:scp "$NOODLES_SERVER_AUTHORITY:$PROJECT_DIR/$ZIP_PATH" "$PROJECT_DIR/$ZIP_PATH"

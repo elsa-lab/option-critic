@@ -8,7 +8,7 @@
     - memory_usage: "<0.5"
     - cuda_gpu_utilization: "<0.7"
     - cuda_memory_usage: "<0.5"
-    - project_tmux_count: "<8"
+    - project_tmux_count: "<6"
     stop:
     - has_log: "==Yes"
     purge:

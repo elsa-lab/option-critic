@@ -52,7 +52,7 @@ after_all_experiments:
       # Cause the script to exit on any errors
       set -euo pipefail
       # Send email notification (e.g., use mutt)
-      test -f "$HOME/notify.sh" && bash "$HOME/notify.sh" "$NAME" "$ZIP_PATH" "$(hostname)"
+      test -f "$HOME/notify.sh" && bash "$HOME/notify.sh" "Finished: $NAME" "Download \"$PROJECT_DIR/$ZIP_PATH\" on \"$(hostname)\""
 
 ################################################################################
 # Servers
@@ -112,3 +112,21 @@ commands_interval: 10
 
 # Whether to check any nonzero return code and nonempty stderr and raise error
 check_any_errors: True
+
+# List of error handlers
+error_handlers:
+- name: Ignore ssh_exchange_identification error
+  return_code: 255
+  stderr_pattern: "^ssh_exchange_identification:.+\\s+$"
+  action: retry
+- name: Send email when unknown error occurred (Catch all)
+  return_code: ".+"
+  stderr_pattern: "[\\S\\s]+"
+  commands: |
+    # Run .bash_profile
+    test -f $HOME/.bash_profile && source $HOME/.bash_profile
+    # Cause the script to exit on any errors
+    set -euo pipefail
+    # Send email notification (e.g., use mutt)
+    test -f "$HOME/notify.sh" && bash "$HOME/notify.sh" "Error: $NAME" "Unexpected error occurred when running experiment \"$NOODLES_EXPERIMENT_NAME\" on server \"$NOODLES_SERVER_NAME\""
+  action: abort

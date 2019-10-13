@@ -24,3 +24,18 @@ export MODEL_DIR="$ROOT_MODELS_DIR/$SUB_DIR"
 
 # Set the zip path ("/" are replaced with "." in the sub-dir)
 export ZIP_PATH="$ROOT_ZIPS_DIR/${SUB_DIR////.}.zip"
+
+# Print the Tmux session name
+echo "\$TMUX_SESSION_NAME=$TMUX_SESSION_NAME"
+
+# Print the log path for STDOUT
+echo "\$LOG_STDOUT_PATH=$LOG_STDOUT_PATH"
+
+# Print the log path for STDERR
+echo "\$LOG_STDERR_PATH=$LOG_STDERR_PATH"
+
+# Print the model directory
+echo "\$MODEL_DIR=$MODEL_DIR"
+
+# Print the zip path
+echo "\$ZIP_PATH=$ZIP_PATH"

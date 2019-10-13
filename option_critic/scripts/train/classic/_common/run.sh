@@ -44,5 +44,5 @@ tmux new -d -s "$TMUX_SESSION_NAME" \
     --folder-name=$MODEL_DIR \
     > >(tee \"$LOG_STDOUT_PATH\") \
     2> >(tee \"$LOG_STDERR_PATH\" >&2) && \
-    rm -f $ZIP_PATH \
+    rm -f \"$ZIP_PATH\" && \
     zip -r \"$ZIP_PATH\" \"$LOG_DIR\" \"$MODEL_DIR\""

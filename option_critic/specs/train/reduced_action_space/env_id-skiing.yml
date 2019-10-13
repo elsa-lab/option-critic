@@ -62,7 +62,7 @@ after_all_experiments:
       # Cause the script to exit on any errors
       set -euo pipefail
       # Send email notification (e.g., use mutt)
-      test -f "$HOME/notify.sh" && bash "$HOME/notify.sh" "$NAME" "$ZIP_PATH" "$(hostname)"
+      test -f "$HOME/notify.sh" && bash "$HOME/notify.sh" "Finished: $NAME" "Download \"$PROJECT_DIR/$ZIP_PATH\" on \"$(hostname)\""
 
 ################################################################################
 # Servers
@@ -123,6 +123,24 @@ commands_interval: 10
 # Whether to check any nonzero return code and nonempty stderr and raise error
 check_any_errors: True
 
+# List of error handlers
+error_handlers:
+- name: Ignore ssh_exchange_identification error
+  return_code: 255
+  stderr_pattern: "^ssh_exchange_identification:.+\\s+$"
+  action: retry
+- name: Send email when unknown error occurred (Catch all)
+  return_code: ".+"
+  stderr_pattern: "[\\S\\s]+"
+  commands: |
+    # Run .bash_profile
+    test -f $HOME/.bash_profile && source $HOME/.bash_profile
+    # Cause the script to exit on any errors
+    set -euo pipefail
+    # Send email notification (e.g., use mutt)
+    test -f "$HOME/notify.sh" && bash "$HOME/notify.sh" "Error: $NAME" "Unexpected error occurred when running experiment \"$NOODLES_EXPERIMENT_NAME\" on server \"$NOODLES_SERVER_NAME\""
+  action: abort
+
 
 ################################################################################
 # Experiments
@@ -143,7 +161,7 @@ experiments:
     - memory_usage: "<0.5"
     - cuda_gpu_utilization: "<0.7"
     - cuda_memory_usage: "<0.5"
-    - project_tmux_count: "<8"
+    - project_tmux_count: "<6"
     stop:
     - has_log: "==Yes"
     purge:
@@ -202,7 +220,7 @@ experiments:
     - memory_usage: "<0.5"
     - cuda_gpu_utilization: "<0.7"
     - cuda_memory_usage: "<0.5"
-    - project_tmux_count: "<8"
+    - project_tmux_count: "<6"
     stop:
     - has_log: "==Yes"
     purge:
@@ -261,7 +279,7 @@ experiments:
     - memory_usage: "<0.5"
     - cuda_gpu_utilization: "<0.7"
     - cuda_memory_usage: "<0.5"
-    - project_tmux_count: "<8"
+    - project_tmux_count: "<6"
     stop:
     - has_log: "==Yes"
     purge:
@@ -320,7 +338,7 @@ experiments:
     - memory_usage: "<0.5"
     - cuda_gpu_utilization: "<0.7"
     - cuda_memory_usage: "<0.5"
-    - project_tmux_count: "<8"
+    - project_tmux_count: "<6"
     stop:
     - has_log: "==Yes"
     purge:
@@ -379,7 +397,7 @@ experiments:
     - memory_usage: "<0.5"
     - cuda_gpu_utilization: "<0.7"
     - cuda_memory_usage: "<0.5"
-    - project_tmux_count: "<8"
+    - project_tmux_count: "<6"
     stop:
     - has_log: "==Yes"
     purge:
@@ -444,19 +462,8 @@ experiments:
     - has_zip: "==Yes"
   commands:
     run:
-    - |
-      # Run .bash_profile if it exists
-      test -f $HOME/.bash_profile && source $HOME/.bash_profile
-      # Cause the script to exit on any errors
-      set -euo pipefail
-      # Go to the project directory
-      cd "$PROJECT_DIR"
-      # Set the common variables
-      source "option_critic/scripts/_common/set_common_variables.sh"
-      # Initialize the training variables
-      source "option_critic/scripts/train/_common/init_training_variables.sh"
     # Use SCP to download the zip to local
-    - local:scp "$NOODLES_SERVER_AUTHORITY:$ZIP_PATH" "$ZIP_PATH"
+    - local:scp "$NOODLES_SERVER_AUTHORITY:$PROJECT_DIR/$ZIP_PATH" "$PROJECT_DIR/$ZIP_PATH"
 
 - name: download.seed-1001
   description: Zip the experimental results and download the zip to local
@@ -471,19 +478,8 @@ experiments:
     - has_zip: "==Yes"
   commands:
     run:
-    - |
-      # Run .bash_profile if it exists
-      test -f $HOME/.bash_profile && source $HOME/.bash_profile
-      # Cause the script to exit on any errors
-      set -euo pipefail
-      # Go to the project directory
-      cd "$PROJECT_DIR"
-      # Set the common variables
-      source "option_critic/scripts/_common/set_common_variables.sh"
-      # Initialize the training variables
-      source "option_critic/scripts/train/_common/init_training_variables.sh"
     # Use SCP to download the zip to local
-    - local:scp "$NOODLES_SERVER_AUTHORITY:$ZIP_PATH" "$ZIP_PATH"
+    - local:scp "$NOODLES_SERVER_AUTHORITY:$PROJECT_DIR/$ZIP_PATH" "$PROJECT_DIR/$ZIP_PATH"
 
 - name: download.seed-1002
   description: Zip the experimental results and download the zip to local
@@ -498,19 +494,8 @@ experiments:
     - has_zip: "==Yes"
   commands:
     run:
-    - |
-      # Run .bash_profile if it exists
-      test -f $HOME/.bash_profile && source $HOME/.bash_profile
-      # Cause the script to exit on any errors
-      set -euo pipefail
-      # Go to the project directory
-      cd "$PROJECT_DIR"
-      # Set the common variables
-      source "option_critic/scripts/_common/set_common_variables.sh"
-      # Initialize the training variables
-      source "option_critic/scripts/train/_common/init_training_variables.sh"
     # Use SCP to download the zip to local
-    - local:scp "$NOODLES_SERVER_AUTHORITY:$ZIP_PATH" "$ZIP_PATH"
+    - local:scp "$NOODLES_SERVER_AUTHORITY:$PROJECT_DIR/$ZIP_PATH" "$PROJECT_DIR/$ZIP_PATH"
 
 - name: download.seed-1003
   description: Zip the experimental results and download the zip to local
@@ -525,19 +510,8 @@ experiments:
     - has_zip: "==Yes"
   commands:
     run:
-    - |
-      # Run .bash_profile if it exists
-      test -f $HOME/.bash_profile && source $HOME/.bash_profile
-      # Cause the script to exit on any errors
-      set -euo pipefail
-      # Go to the project directory
-      cd "$PROJECT_DIR"
-      # Set the common variables
-      source "option_critic/scripts/_common/set_common_variables.sh"
-      # Initialize the training variables
-      source "option_critic/scripts/train/_common/init_training_variables.sh"
     # Use SCP to download the zip to local
-    - local:scp "$NOODLES_SERVER_AUTHORITY:$ZIP_PATH" "$ZIP_PATH"
+    - local:scp "$NOODLES_SERVER_AUTHORITY:$PROJECT_DIR/$ZIP_PATH" "$PROJECT_DIR/$ZIP_PATH"
 
 - name: download.seed-1004
   description: Zip the experimental results and download the zip to local
@@ -552,17 +526,6 @@ experiments:
     - has_zip: "==Yes"
   commands:
     run:
-    - |
-      # Run .bash_profile if it exists
-      test -f $HOME/.bash_profile && source $HOME/.bash_profile
-      # Cause the script to exit on any errors
-      set -euo pipefail
-      # Go to the project directory
-      cd "$PROJECT_DIR"
-      # Set the common variables
-      source "option_critic/scripts/_common/set_common_variables.sh"
-      # Initialize the training variables
-      source "option_critic/scripts/train/_common/init_training_variables.sh"
     # Use SCP to download the zip to local
-    - local:scp "$NOODLES_SERVER_AUTHORITY:$ZIP_PATH" "$ZIP_PATH"
+    - local:scp "$NOODLES_SERVER_AUTHORITY:$PROJECT_DIR/$ZIP_PATH" "$PROJECT_DIR/$ZIP_PATH"
 
