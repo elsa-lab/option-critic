@@ -1,8 +1,8 @@
 # Name of the spec
-name: option_critic classic
+name: option_critic test
 
 # Description of the spec
-description: Train option critic on an environment
+description: Train option critic
 
 ################################################################################
 # Common
@@ -16,9 +16,9 @@ description: Train option critic on an environment
 experiment_default:
   envs:
     # Names
-    NAME: classic
+    NAME: test
     # Training arguments
-    ENV_ID: enduro
+    ENV_ID: beam_rider
     # Project directory
     PROJECT_DIR: "$HOME/option_critic"
     # Copied from "scripts/_common/set_common_variables.sh"

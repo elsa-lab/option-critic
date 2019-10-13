@@ -41,6 +41,19 @@ before_all_experiments:
       && (echo Has not run experiments yet >&2; exit 1)
       || echo Old experiments detected
 
+# Runs after the main experiments have finished
+after_all_experiments:
+- name: notify
+  description: Notify the user by running the notify script if it exists
+  commands:
+    run: |
+      # Run .bash_profile
+      test -f $HOME/.bash_profile && source $HOME/.bash_profile
+      # Cause the script to exit on any errors
+      set -euo pipefail
+      # Send email notification (e.g., use mutt)
+      test -f "$HOME/notify.sh" && bash "$HOME/notify.sh" "$NAME" "$ZIP_PATH" "$(hostname)"
+
 ################################################################################
 # Servers
 ################################################################################

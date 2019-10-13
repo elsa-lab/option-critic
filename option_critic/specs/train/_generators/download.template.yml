@@ -12,7 +12,7 @@
   commands:
     run:
     - |
-      # Run .bash_profile
+      # Run .bash_profile if it exists
       test -f $HOME/.bash_profile && source $HOME/.bash_profile
       # Cause the script to exit on any errors
       set -euo pipefail
