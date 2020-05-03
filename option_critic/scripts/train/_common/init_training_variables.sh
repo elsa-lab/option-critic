@@ -7,9 +7,6 @@ set -euo pipefail
 # Set the sub-dir
 SUB_DIR="$NAME/env_id-$ENV_ID/seed-$SEED"
 
-# Set the Tmux session name ("." are replaced with "," in the sub-dir)
-export TMUX_SESSION_NAME="train/$CONDA_ENV_NAME/${SUB_DIR//./,}"
-
 # Set the log directory
 export LOG_DIR="$ROOT_LOGS_DIR/train/$SUB_DIR"
 
@@ -24,9 +21,6 @@ export MODEL_DIR="$ROOT_MODELS_DIR/$SUB_DIR"
 
 # Set the zip path ("/" are replaced with "." in the sub-dir)
 export ZIP_PATH="$ROOT_ZIPS_DIR/${SUB_DIR////.}.zip"
-
-# Print the Tmux session name
-echo "\$TMUX_SESSION_NAME=$TMUX_SESSION_NAME"
 
 # Print the log path for STDOUT
 echo "\$LOG_STDOUT_PATH=$LOG_STDOUT_PATH"

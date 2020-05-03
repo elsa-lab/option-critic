@@ -12,7 +12,7 @@ pip install -e .
 
 # Install the developement version of Lasagne
 # Reference: https://github.com/aigamedev/scikit-neuralnetwork/issues/235#issuecomment-303639327
-pip install --upgrade https://github.com/Lasagne/Lasagne/archive/master.zip
+pip install https://github.com/Lasagne/Lasagne/archive/master.zip
 
 # Install Pylearn2
 # References:

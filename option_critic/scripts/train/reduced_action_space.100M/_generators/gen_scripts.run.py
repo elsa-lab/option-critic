@@ -2,7 +2,7 @@ from option_critic.scripts.train._generators.common import gen_scripts
 
 # Set the settings
 settings = {
-    'name': 'reduced_action_space',
+    'name': 'reduced_action_space.100M',
     'env_ids': ['asteroids', 'beam_rider', 'bowling', 'breakout', 'enduro',
                 'freeway', 'kung_fu_master', 'ms_pacman', 'pong', 'qbert',
                 'seaquest', 'skiing', 'space_invaders'],
