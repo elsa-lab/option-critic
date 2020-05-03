@@ -75,15 +75,15 @@ setup(
     #
     # This field corresponds to the "Home-Page" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#home-page-optional
-    url='https://github.com/sc420/option_critic',  # Optional
+    url='https://github.com/elsa-lab/option_critic',  # Optional
 
     # This should be your name or the name of the organization which owns the
     # project.
-    author='Shawn Chang',  # Optional
+    author='ELSA Lab',  # Optional
 
     # This should be a valid email address corresponding to the author listed
     # above.
-    author_email='shawn420@gapp.nthu.edu.tw',  # Optional
+    author_email='',  # Optional
 
     # Classifiers help users find your project by categorizing it.
     #
@@ -131,7 +131,7 @@ setup(
     # and refuse to install the project if the version does not match. If you
     # do not support Python 2, you can simplify this to '>=3.5' or similar, see
     # https://packaging.python.org/guides/distributing-packages-using-setuptools/#python-requires
-    python_requires='>=2.7, <3',
+    python_requires='>=2.7',
 
     # This field lists other packages that your project depends on to run.
     # Any package you put here will be installed by pip when your project is
@@ -140,13 +140,12 @@ setup(
     # For an analysis of "install_requires" vs pip's requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=[
-        'atari-py==0.2.6',
-        'Cython==0.29.13',
         'gputil==1.4.0',
+        'scipy==0.14',
+        'theano==0.9.0',
+        'kiwisolver==1.0.1',
         'matplotlib==2.2.4',
-        'numpy==1.16.5',
-        'opencv-python==4.1.1.26',
-        'theano==1.0.4',
+        'atari-py==0.2.6',
     ],  # Optional
 
     # List additional groups of dependencies here (e.g. development
@@ -199,7 +198,7 @@ setup(
     # maintainers, and where to support the project financially. The key is
     # what's used to render the link text on PyPI.
     project_urls={  # Optional
-        'Bug Reports': 'https://github.com/sc420/option_critic/issues',
-        'Source': 'https://github.com/sc420/option_critic',
+        'Bug Reports': 'https://github.com/elsa-lab/option_critic/issues',
+        'Source': 'https://github.com/elsa-lab/option_critic',
     },
 )
