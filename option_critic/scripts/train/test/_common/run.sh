@@ -22,7 +22,7 @@ source "option_critic/scripts/train/_common/init_training_environment.sh"
 ################################################################################
 
 # Set the number of epochs
-export EPOCHS=5
+export EPOCHS=2
 
 # Set the number of options
 export NUM_OPTIONS=8
