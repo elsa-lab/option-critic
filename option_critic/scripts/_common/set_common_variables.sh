@@ -1,6 +1,3 @@
-# Set the conda environment name to be created
-CONDA_ENV_NAME=option_critic
-
 # Set the logs directory
 ROOT_LOGS_DIR=logs
 
@@ -11,4 +8,4 @@ ROOT_MODELS_DIR=models
 ROOT_ZIPS_DIR=zips
 
 # Set the path to install Pylearn2
-PYLEARN2_INSTALL_PATH="$HOME/pylearn2"
+PYLEARN2_INSTALL_PATH="/opt/pylearn2"
