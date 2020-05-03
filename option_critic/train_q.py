@@ -21,7 +21,7 @@ class Defaults:
     # ----------------------
     # ALE Parameters
     # ----------------------
-    BASE_ROM_PATH = "/opt/aleroms/"
+    BASE_ROM_PATH = "./roms/"
     ROM = 'BeamRider.bin'
     FRAME_SKIP = 4
 
