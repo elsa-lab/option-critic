@@ -6,6 +6,7 @@ Original GitHub page: https://github.com/jeanharb/option_critic
 ## Installation
 
 1. Run `option_critic/scripts/setup/install.sh`
+2. or `docker pull elsaresearchlab/option_critic`
 
 ## Training
 
