@@ -19,6 +19,9 @@ apt-get install -y \
 
 1. Run `option_critic/scripts/setup/install.sh`
 
+> You may need to edit the installation path of Pylean2
+- Defined as `PYLEARN2_INSTALL_PATH` in `option_critic/option_critic/scripts/_common/set_common_variables.sh`.
+
 > We also provide docker images, which make things easier:
 - Run `docker pull elsaresearchlab/option_critic:gtx10` for GTX 10 series GPU
 - Run `docker pull elsaresearchlab/option_critic:rtx20` for RTX 20 series GPU
