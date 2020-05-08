@@ -17,9 +17,11 @@ apt-get install -y \
 
 ## Installation
 
-1. Run `option_critic/scripts/setup/install.sh`,
-2. or `docker pull elsaresearchlab/option_critic:gtx10` for GTX 10 series GPU,
-3. or `docker pull elsaresearchlab/option_critic:rtx20` for RTX 20 series GPU.
+1. Run `option_critic/scripts/setup/install.sh`
+
+> We also provide docker images, which make things easier:
+- Run `docker pull elsaresearchlab/option_critic:gtx10` for GTX 10 series GPU
+- Run `docker pull elsaresearchlab/option_critic:rtx20` for RTX 20 series GPU
 
 ## Training
 
