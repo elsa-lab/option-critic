@@ -6,9 +6,16 @@ RUN apt-get update && apt-get install -y \
 python-pip python-dev python-opencv python-tk python-numpy \
 git zip libopenblas-dev cmake zlib1g-dev
 
+RUN git clone https://github.com/openai/atari-py /opt/atari-py \
+&& cd /opt/atari-py \
+&& git checkout 0.2.6
+
 RUN git clone https://github.com/elsa-lab/option_critic.git /opt/option_critic \
 && cd /opt/option_critic \
 && bash option_critic/scripts/setup/install.sh
+
+RUN mv /opt/atari-py/atari_py/atari_roms /opt/option_critic/roms \
+&& rm -r /opt/atari-py
 
 WORKDIR /opt/option_critic
 
