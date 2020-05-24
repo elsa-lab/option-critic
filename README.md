@@ -30,6 +30,32 @@ apt-get install -y \
 
 1. See scripts under `option_critic/scripts/train`
 
+### Quick start
+
+```bash
+export NAME=500k       # identify the exp.
+export ENV_ID=seaquest # atari env
+export EPOCHS=2        # 250k step/epoch
+export SEED=1000       # random seed
+bash option_critic/scripts/train/run.sh
+```
+
+### Using docker
+
+```bash
+docker run -it --rm \
+  --gpus all \
+  --env NAME=500k \
+  --env ENV_ID=seaquest \
+  --env EPOCHS=2 \
+  --env SEED=1000 \
+  -v ~/models:/option_critic/models \
+  -v ~/logs:/option_critic/logs \
+  -v ~/zips:/option_critic/zips \
+  elsaresearchlab/option_critic:gtx10 \
+  bash option_critic/scripts/train/run.sh
+```
+
 ## Testing
 
 To watch model after training, run:
