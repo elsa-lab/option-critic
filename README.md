@@ -33,10 +33,13 @@ apt-get install -y \
 ### Quick start
 
 ```bash
-export NAME=500k       # identify the exp.
-export ENV_ID=seaquest # atari env
-export EPOCHS=2        # 250k step/epoch
-export SEED=1000       # random seed
+cd /path/to/this/repo       # change to this repo
+mkdir roms                  # create a directory to place the roms for training
+mv /.../seaquest.bin ./roms # placing atari rom(s)
+export NAME=500k            # identify the exp.
+export ENV_ID=seaquest      # specify atari env
+export EPOCHS=2             # 250k step/epoch
+export SEED=1000            # random seed
 bash option_critic/scripts/train/run.sh
 ```
 
