@@ -52,9 +52,9 @@ docker run -it --rm \
   --env ENV_ID=seaquest \
   --env EPOCHS=2 \
   --env SEED=1000 \
-  -v ~/models:/option_critic/models \
-  -v ~/logs:/option_critic/logs \
-  -v ~/zips:/option_critic/zips \
+  -v ~/models:/opt/option_critic/models \
+  -v ~/logs:/opt/option_critic/logs \
+  -v ~/zips:/opt/option_critic/zips \
   elsaresearchlab/option_critic:gtx10 \
   bash option_critic/scripts/train/run.sh
 ```
