@@ -46,16 +46,15 @@ bash option_critic/scripts/train/run.sh
 ### Using docker
 
 ```bash
-docker run -it --rm \
-  --gpus all \
+docker run -it --rm -d \
+  --name seaquest-seed-1000 \
+  --gpus '"device=0"' \
+  --env SEED=1000 \
   --env NAME=500k \
   --env ENV_ID=seaquest \
   --env EPOCHS=2 \
-  --env SEED=1000 \
-  -v ~/models:/opt/option_critic/models \
-  -v ~/logs:/opt/option_critic/logs \
   -v ~/zips:/opt/option_critic/zips \
-  elsaresearchlab/option_critic:gtx10 \
+  elsaresearchlab/option_critic \
   bash option_critic/scripts/train/run.sh
 ```
 
